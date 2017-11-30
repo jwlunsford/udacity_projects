@@ -7,7 +7,7 @@ big_lebowski = Movie(
     "The Big Lebowski",
     "A movie about a middle aged slacker who is a victim of " 
     "all sorts of mishaps and random adventures.",
-    "https://upload.wikimedia.org/wikipedia/en/3/35/Biglebowskiposter.jpg",
+    "https://upload.wikimedia.org/wikipedia/en/3/35/Biglebowskiposter.jpg", # NOQA
     "https://www.youtube.com/watch?v=cd-go0oBF4Y")
 
 
@@ -15,7 +15,7 @@ empire_strikes_back = Movie(
     "The Empire Strikes Back",
     "A movie about good versus evil in a galaxy " 
     "far, far away.",
-    "https://upload.wikimedia.org/wikipedia/en/3/3c/SW_-_Empire_Strikes_Back.jpg",
+    "https://upload.wikimedia.org/wikipedia/en/3/3c/SW_-_Empire_Strikes_Back.jpg", # NOQA
     "https://www.youtube.com/watch?v=96v4XraJEPI")
                                 
 office_space = Movie(
@@ -29,14 +29,14 @@ jason_bourne = Movie(
     "Jason Bourne",
     "An ex-CIA assassin searches for information about his "
     "past life.",
-    "https://upload.wikimedia.org/wikipedia/en/b/b2/Jason_Bourne_%28film%29.jpg",
+    "https://upload.wikimedia.org/wikipedia/en/b/b2/Jason_Bourne_%28film%29.jpg", # NOQA
     "https://www.youtube.com/watch?v=F4gJsKZvqE4")
                     
 the_internship = Movie(
     "The Internship",
     "Two middle-aged men compete for an intern position "
     "at Google after being fired from their jobs.",
-    "https://upload.wikimedia.org/wikipedia/en/e/ed/The-internship-poster.jpg",
+    "https://upload.wikimedia.org/wikipedia/en/e/ed/The-internship-poster.jpg", # NOQA
     "https://www.youtube.com/watch?v=cdnoqCViqUo")
                         
 the_breakfast_club = Movie(
