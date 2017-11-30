@@ -2,6 +2,12 @@ import webbrowser
 import os
 import re
 
+'''THIS FILE WAS COPIED BY PERMISSION AS PART OF THE UDACITY
+FULL STACK DEVELOPER COURSE AND DOES NOT REPRESENT MY
+OWN WORK - JON LUNSFORD '''
+
+
+
 # Styles and scripting for the page
 main_page_head = '''
 <head>
