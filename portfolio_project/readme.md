@@ -2,8 +2,8 @@
 
 ### Files:
 Files included in this project are:
-* responsive.html
-* responsive.css
+* index.html
+* main.css
 
 ### Description:
 This project was developed in using HTML5 and CSS3. The result is a single page 
@@ -17,6 +17,6 @@ Jon Lunsford, January 7 2018
 
 ### Installation:
 No installation is required to view the webpage.
-Simply open the 'responsive.html' file in a web browser of your choice.  Click on a featured
+Simply open the 'index.html' file in a web browser of your choice.  Click on a featured
 project image to be redirected to a Github repository where you can download the files to your
 computer.  Double clicking the file on your computer should open your default Web Browser.

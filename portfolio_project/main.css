@@ -1,0 +1,170 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+/* flex-box container */
+.flex-container {
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+.flex-col {
+    padding: 5px;
+}
+
+.flex-col-side {
+    flex: 1;
+}
+
+.flex-col-mid {
+    flex: 6;
+}
+
+h1.mast {
+    font-family: Abel;
+    text-align: center;
+    font-size: 42px;
+    margin: 10px 0px 0px 0px;
+}
+
+h2.mast {
+    font-family: Abel;
+    text-align: center;
+    text-transform: uppercase;
+    color: #aaa6a6;
+    margin: 10px 0px 0px 0px;
+}
+
+/* CSS GRID SECTION */
+/* Grid display for feature links */
+.grid-container {
+    display: grid;
+    width: 100%;
+    grid-row-gap: 50px;
+    grid-template-columns: auto;
+    justify-content: center;
+}
+
+.grid-container > div {
+    text-align: center;
+}
+
+.item > h3 {
+    text-align: center;
+    font-size: 24px;
+    margin: 10px;
+    font-family: Abel;
+    text-transform: uppercase;
+}
+
+.item > span {
+    display: inline-block;
+    font-family: Abel;
+    font-size: 14px;
+    text-align: center;
+    text-transform: lowercase;
+}
+
+.feat-img {
+    width: 250px;
+    height: 175px;
+    opacity: 1.0;
+}
+
+.feat-img:hover {
+    opacity: 0.5;
+}
+
+/* END CSS GRID SECTION */
+
+hr {
+    height: 10px;
+    width: 100%;
+    border: 0;
+    box-shadow: 0 8px 4px -7px #000 inset;
+}
+
+
+img.main {
+    display: block;
+    width: 100%;
+    height: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.4);
+}
+
+section h2 {
+    font-family: Abel;
+    text-align: center;
+    font-size: 28px;
+    margin: 40px 0px 10px 0px;
+}
+
+footer {
+    height: 80px;
+    width: 100%;
+}
+
+footer p {
+    font-family: Abel;
+    font-size: 12px;
+    text-align: center;
+    padding: 50px 0px 0px 0px;
+}
+
+
+/* RESPONSIVE SECTION */
+/* at screen width 768+ (iPad width) apply these rules */
+@media only screen and (min-width: 768px) {
+    .grid-container {
+        display: grid;
+        width: 100%;
+        grid-gap: 25px;
+        grid-template-columns: auto auto;
+        justify-content: center;
+    }
+    
+    h1.mast {
+        font-size: 56px;
+        text-align: right;
+        margin: 10px 0px 10px 0px;
+    }
+    
+    h2.mast {
+        text-align: right;
+        margin: 0px 0px 10px 0px;
+    }
+    
+    section h2 {
+        text-align: center;
+    }
+}
+
+/* at screen size 1000px apply these rules */
+@media only screen and (min-width: 1000px) {
+    .grid-container {
+        display: grid;
+        width: 100%;
+        grid-gap: 25px;
+        grid-template-columns: auto auto auto;
+        justify-content: center;
+    }
+    
+    section h2 {
+        text-align: left;
+    }    
+}
+
+/* at screen size 1200px apply these rules */
+@media only screen and (min-width: 1200px) {
+    .grid-container {
+        display: grid;
+        width: 100%;
+        grid-gap: 25px;
+        grid-template-columns: auto auto auto;
+        justify-content: start;
+    }      
+}
