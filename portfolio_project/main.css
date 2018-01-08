@@ -6,6 +6,8 @@ body {
     margin: 0;
 }
 
+/* Base Styles - Mobile */
+
 /* flex-box container */
 .flex-container {
     display: flex;
@@ -24,19 +26,34 @@ body {
     flex: 6;
 }
 
-h1.mast {
-    font-family: Abel;
-    text-align: center;
-    font-size: 42px;
-    margin: 10px 0px 0px 0px;
+/* CSS HEADER GRID */
+.header-grid {
+    display: grid;
+    width: 100%;
+    grid-gap: 2px;
+    grid-template-columns: auto;
+    justify-content: center;
 }
 
-h2.mast {
-    font-family: Abel;
-    text-align: center;
-    text-transform: uppercase;
+
+.mast-1 {
+    font-family: 'Open Sans', 'Maven Pro', sans-serif;
+    text-align: right;
+    font-size: 100%px;
+    margin: 10px 0 0 0;
+}
+
+.mast-2 {
+    font-family: 'Maven Pro', 'Abel', sans-serif;
+    text-align: right;
     color: #aaa6a6;
-    margin: 10px 0px 0px 0px;
+    margin: 10px 0 0 0;
+}
+
+.logo {
+    display: inline-block;
+    width: 50%;
+    height: auto;
 }
 
 /* CSS GRID SECTION */
@@ -57,13 +74,13 @@ h2.mast {
     text-align: center;
     font-size: 24px;
     margin: 10px;
-    font-family: Abel;
+    font-family: 'Maven Pro', 'Abel', sans-serif;
     text-transform: uppercase;
 }
 
 .item > span {
     display: inline-block;
-    font-family: Abel;
+    font-family: 'Abel', sans-serif;
     font-size: 14px;
     text-align: center;
     text-transform: lowercase;
@@ -97,7 +114,7 @@ img.main {
 }
 
 section h2 {
-    font-family: Abel;
+    font-family: 'Maven Pro', 'Abel', sans-serif;
     text-align: center;
     font-size: 28px;
     margin: 40px 0px 10px 0px;
@@ -109,62 +126,87 @@ footer {
 }
 
 footer p {
-    font-family: Abel;
+    font-family: 'Abel', sans-serif;
     font-size: 12px;
     text-align: center;
     padding: 50px 0px 0px 0px;
 }
 
 
-/* RESPONSIVE SECTION */
-/* at screen width 768+ (iPad width) apply these rules */
+/* Tablet Styles (iPad = 768 px) */
 @media only screen and (min-width: 768px) {
     .grid-container {
-        display: grid;
-        width: 100%;
         grid-gap: 25px;
         grid-template-columns: auto auto;
-        justify-content: center;
     }
     
-    h1.mast {
-        font-size: 56px;
+    .header-grid {
+        grid-template-columns: auto auto;
+    }
+    
+    .header-item3 {
+        grid-column: 1 / 3;
+    }
+    
+    .logo {
+        width: 80%;
+        /*padding: 15px 0 15px 0;*/
+    }
+        
+    .mast-1 {
+        font-size: 42px;
         text-align: right;
-        margin: 10px 0px 10px 0px;
+        margin: 10px 0px 0px 0px;
     }
     
-    h2.mast {
+    .mast-2 {
         text-align: right;
         margin: 0px 0px 10px 0px;
     }
-    
+        
     section h2 {
         text-align: center;
     }
 }
 
-/* at screen size 1000px apply these rules */
+/* Large Tablet Styles */
 @media only screen and (min-width: 1000px) {
     .grid-container {
-        display: grid;
-        width: 100%;
-        grid-gap: 25px;
         grid-template-columns: auto auto auto;
-        justify-content: center;
     }
     
+    .header-grid {
+        grid-template-columns: auto auto auto;
+        grid-column-gap: 70px;
+    }
+    
+    .header-item1 {
+        grid-column: 1 / 3;
+    }
+    
+    .header-item3 {
+        grid-column: 1 / 4;
+    }
+    
+    .logo {
+        width: 70%;
+        padding: 10px 0 15px 0;
+    }
+    
+        
     section h2 {
         text-align: left;
     }    
 }
 
-/* at screen size 1200px apply these rules */
+/* Desktop Styles */
 @media only screen and (min-width: 1200px) {
     .grid-container {
-        display: grid;
-        width: 100%;
-        grid-gap: 25px;
         grid-template-columns: auto auto auto;
         justify-content: start;
-    }      
+    }
+    
+    .header-grid {
+        grid-column-gap: 175px;
+    }    
 }
