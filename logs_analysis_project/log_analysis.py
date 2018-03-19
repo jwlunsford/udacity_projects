@@ -1,11 +1,10 @@
 #!/usr/bin/env python3
 
 import psycopg2
-    
 
 def most_popular_articles():
-    '''create and execute a query that finds the three most popular articles'''
-    
+    '''create and execute a query that finds the three most popular
+    articles'''
     # connect to the database
     db = psycopg2.connect("dbname=news")
     
@@ -14,7 +13,8 @@ def most_popular_articles():
     
     qryparts = ["SELECT path, count(path) AS cnt FROM log GROUP BY path",
                 "HAVING path LIKE '/article%' ORDER BY cnt desc limit 3;"]
-                
+    
+    # rejoin the qryparts list            
     this_qry = ' '.join(qryparts)    
     
     # execute the desired query
@@ -24,11 +24,11 @@ def most_popular_articles():
     # close the connection and return the result
     db.close()
     return rst
+    
         
 def most_popular_author():
     '''create and execute a query that finds the most popular authors
     by the total number of articles they've written.'''
-    
     # connect to the database
     db = psycopg2.connect("dbname=news")
     
@@ -43,6 +43,7 @@ def most_popular_author():
                 "GROUP BY authors.name",
                 "ORDER BY cnt desc;"]
     
+    # rejoin the qryparts list
     this_qry = ' '.join(qryparts)
     
     # execute the desired query
@@ -56,8 +57,7 @@ def most_popular_author():
 
 def request_errors_gt_one_pct():
     '''create and execute a query that finds the date or dates where the
-    404 errors are more than 1% of the total page views.'''
-    
+    404 errors are more than 1% of the total page views.'''    
     # connect to the database
     db = psycopg2.connect("dbname=news")
     
@@ -74,7 +74,8 @@ def request_errors_gt_one_pct():
                 ") requests",
                 "ON daily404.day1 = requests.day2)",
                 "WHERE daily404.freq/requests.totreq::float > 0.01;"]
-                
+    
+    # rejoin the qryparts list            
     this_qry = ' '.join(qryparts)
     
     # execute the query           
@@ -88,8 +89,8 @@ def request_errors_gt_one_pct():
     
 
 if __name__ == '__main__':
-    # create a file named 'output.txt' for writing and output the results from the
-    # three query functions above.
+    # create a file named 'output.txt' for writing and output the results
+    # from the three query functions above.
     with open('output.txt', 'w') as f:
     
         # write the first heading
@@ -127,8 +128,3 @@ if __name__ == '__main__':
     # close the file
     f.close()
     
-        
-
-             
-                               
-                
