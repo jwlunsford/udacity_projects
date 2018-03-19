@@ -1,0 +1,13 @@
+3 most popular articles of all time ...
+Article: /article/candidate-is-jerk, 338647 views
+Article: /article/bears-love-berries, 253801 views
+Article: /article/bad-things-gone, 170098 views
+
+Most popular article authors of all time ...
+Author: Ursula La Multa, 507594 views
+Author: Rudolf von Treppenwitz, 423457 views
+Author: Anonymous Contributor, 170098 views
+Author: Markoff Chaney, 84557 views
+
+Days where errors are greater than 1%...
+Date: 2016-07-17, 2.2626862468% errors
