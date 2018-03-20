@@ -20,8 +20,8 @@ def most_popular_articles():
     # close the connection and return the result
     db.close()
     return rst
-    
-    
+
+
 def most_popular_author():
     '''create and execute a query that finds the most popular authors
     by the total number of articles they've written.'''
@@ -44,8 +44,8 @@ def most_popular_author():
     # close the connection and return the result
     db.close()
     return rst
-    
-    
+
+
 def request_errors_gt_one_pct():
     '''create and execute a query that finds the date or dates where the
     404 errors are more than 1% of the total page views.'''
@@ -71,8 +71,8 @@ def request_errors_gt_one_pct():
     # close the connection and return the result
     db.close()
     return rst
-    
-    
+
+
 if __name__ == '__main__':
     # create a file named 'output.txt' for writing and output the results
     # from the three query functions above.
@@ -101,7 +101,7 @@ if __name__ == '__main__':
         rst = request_errors_gt_one_pct()
         # write the thrid query results to the file
         for result in rst:
-           f.write("Date: {}, {}% errors".format(result[0], result[3]))
-           f.write('\n')
+            f.write("Date: {}, {}% errors".format(result[0], result[3]))
+            f.write('\n')
     # close the file
     f.close()
