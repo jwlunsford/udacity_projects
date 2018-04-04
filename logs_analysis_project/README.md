@@ -25,8 +25,8 @@ The code cannot be run without the associated database.
 * Creating the database:
   * if you use the Vagrantfile supplied by Udacity, this step is automated, otherwise
   * manually create the news database using SQL.  The following link provides the SQL file needed to recreate the database.  [newsdata.sql](https://d17h27t6h515a5.cloudfront.net/topher/2016/August/57b5f748_newsdata/newsdata.zip).  To setup the news database you will need to unzip this file and follow the steps below.
-  1.  from the command line, 'cd' into the vagrant directory.
-  2.  run the 'psql' command
+1.  from the command line, 'cd' into the vagrant directory.
+2.  run the 'psql' command
   *  `psql -d news -f newsdata.sql`
   this command will connect to your database server and create the tables and data.
   * To learn more about how to use the psql command line interface see the [Postgres Guide](http://postgresguide.com/utilities/psql.html).
