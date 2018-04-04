@@ -11,9 +11,9 @@ is provided as part of the Udacity Full Stack Developer Nanodegree.
 
 * The project sets up a mock PostgreSQL database for a fictional news website.  The Python script uses
 psycopg2 to query the database and generate output that answers the following three questions.
-  1.  What is the most popular article on the site?
-  2.  Who are the most popular article authors?
-  3.  On which days did more than 1% of the requests lead to errors?
+1. What is the most popular article on the site?
+2. Who are the most popular article authors?
+3. On which days did more than 1% of the requests lead to errors?
 
 ### Requirements
 In order to use this program, users will need to install a Linux VM with Vagrant:
