@@ -9,7 +9,8 @@
     <form action="{{ url_for('editMenuItem', restaurant_id=restaurant_id, menu_id=menu_id) }}" method='POST'>
       <p>Name:</p>
         <input type='text' size='30' name='rename' placeholder='{{ item.name }}'>
-      <input type='submit' value='Edit'>
+      <input type='submit' value='Edit'></br>
     </form>
+    <a href="{{ url_for('restaurantMenu', restaurant_id=restaurant_id) }}">Cancel</a>
   </body>
 </html>
