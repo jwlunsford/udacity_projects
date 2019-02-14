@@ -38,6 +38,13 @@ def showRestaurants():
     return "This page will show all restaurants in the DB."
 
 
+@app.route('restaurants/new')
+def newRestaurant():
+    # add new restaurant using name supplied by user
+    return "This page will add a new restaurant to the DB."
+
+
+
 
 
 # Menu CRUD
