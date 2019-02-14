@@ -38,13 +38,21 @@ def showRestaurants():
     return "This page will show all restaurants in the DB."
 
 
-@app.route('restaurants/new')
+@app.route('/restaurant/new')
 def newRestaurant():
     # add new restaurant using name supplied by user
     return "This page will add a new restaurant to the DB."
 
 
+@app.route('/restaurant/<int:restaurant_id>edit')
+def editRestaurant(restaurant_id):
+    # edit a restaurant
+    return "This page will edit a restaurant."
 
+@app.route('/restaurant/<int:restaurant_id>/delete')
+def deleteRestaurant(restaurant_id):
+    # delete a restaurant
+    return "This page will delete a restaurant."
 
 
 # Menu CRUD
