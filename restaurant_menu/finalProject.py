@@ -45,7 +45,7 @@ def newRestaurant():
     return "This page will add a new restaurant to the DB."
 
 
-@app.route('/restaurant/<int:restaurant_id>edit')
+@app.route('/restaurant/<int:restaurant_id>/edit')
 def editRestaurant(restaurant_id):
     # edit a restaurant
     return "This page will edit a restaurant."
