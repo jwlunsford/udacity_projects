@@ -31,13 +31,16 @@ def restaurantMenuItemJSON(restaurant_id, menu_id):
 
 
 # Resturant CRUD
-
+@app.route('/')
+@app.route('/restaurants')
+def showRestaurants():
+    # show all restaurants
+    return "This page will show all restaurants in the DB."
 
 
 
 
 # Menu CRUD
-@app.route('/')
 @app.route('/restaurants/<int:restaurant_id>/')
 def restaurantMenu(restaurant_id):
     restaurant = session.query(Restaurant).filter_by(id=restaurant_id).one()
