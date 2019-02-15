@@ -32,14 +32,14 @@ def restaurantMenuItemJSON(restaurant_id, menu_id):
 
 # Resturant CRUD
 @app.route('/')
-@app.route('/restaurants')
+@app.route('/restaurants/')
 def showRestaurants():
     # show all restaurants
     restaurants = session.query(Restaurant).all()
     return render_template('restaurant.html', restaurants=restaurants)
 
 
-@app.route('/restaurant/new')
+@app.route('/restaurant/new', methods=['GET', 'POST'])
 def newRestaurant():
     # add new restaurant using name supplied by user
     if request.method == 'POST':
@@ -51,22 +51,22 @@ def newRestaurant():
         return render_template('newRestaurant.html')
 
 
-@app.route('/restaurant/<int:restaurant_id>/edit')
+@app.route('/restaurant/<int:restaurant_id>/edit', methods=['GET', 'POST'])
 def editRestaurant(restaurant_id):
     # edit a restaurant
-    editRestaurant = session.query(Restaurant).filter_by(restaurant_id=restaurant_id).one()
+    thisRestaurant = session.query(Restaurant).filter_by(id=restaurant_id).one()
     if request.method == 'POST':
         if request.form['rename']:
-            editRestaurant.name = request.form['rename']
-        session.add(editRestaurant)
+            thisRestaurant.name = request.form['rename']
+        session.add(thisRestaurant)
         session.commit()
-        flash("Restaurant name successfully changed to {}.".format(editRestaurant.name))
+        flash("Restaurant name successfully changed to {}.".format(thisRestaurant.name))
         return redirect(url_for('showRestaurants'))
     else:
-        return render_template('editRestaurant.html', restaurant_id=restaurant_id, restaurant)
+        return render_template('editRestaurant.html', restaurant_id=restaurant_id, restaurant=thisRestaurant)
 
 
-@app.route('/restaurant/<int:restaurant_id>/delete')
+@app.route('/restaurant/<int:restaurant_id>/delete', methods=['GET', 'POST'])
 def deleteRestaurant(restaurant_id):
     # delete a restaurant
     return "This page will delete a restaurant."
