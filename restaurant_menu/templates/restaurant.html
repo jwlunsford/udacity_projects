@@ -19,7 +19,7 @@
     <a href="{{ url_for('newRestaurant') }}">New Restaurant</a></br></br>
 
     {% for r in restaurants %}
-      {{ r.name }}</br>
+      <a class="menu" href="{{ url_for('restaurantMenu', restaurant_id=r.id) }}">{{ r.name }}</a></br>
       <a href="{{ url_for('editRestaurant', restaurant_id=r.id) }}">Edit</a></br>
       <a href="{{ url_for('deleteRestaurant', restaurant_id=r.id) }}">Delete</a></br></br>
     {% endfor %}
