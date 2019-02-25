@@ -22,7 +22,7 @@ class Restaurant(Base):
     id = Column(Integer, primary_key = True)
 
     @property
-    def Serialize(self):
+    def serialize(self):
         # create a JSON style object for an API endpoint
         return {
             'name': self.name,
@@ -45,14 +45,14 @@ class MenuItem(Base):
     restaurant = relationship(Restaurant)
 
     @property
-    def Serialize(self):
+    def serialize(self):
         # create a JSON style object for an API endpoint
         return {
             'name': self.name,
             'id': self.id,
             'course': self.course,
             'description': self.description,
-            'price': self.price,
+            'price': self.price
         }
 
 
