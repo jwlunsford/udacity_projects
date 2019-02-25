@@ -14,6 +14,13 @@ session = DBSession()
 # SETUP ABOVE
 
 # API ENPOINTS --- JSON
+@app.route('/restaurants/JSON')
+def restaruantsJSON():
+    # use jsonify to return a list of restaurants in the DB
+    restaurants = session.query(Restaurant).all()
+    return jsonify(Restaurants=[r.serialize for r in restaurants])
+
+
 @app.route('/restaurants/<int:restaurant_id>/menu/JSON')
 def restaurantMenuJSON(restaurant_id):
     # use jsonify to return a list of serialized menu items
