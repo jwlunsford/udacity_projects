@@ -45,7 +45,7 @@ def restaurantMenuItemJSON(restaurant_id, menu_id):
 def show_login():
     state = ''.join(random.choice(string.ascii_uppercase + string.digits) for x in range(32))
     login_session['state'] = state
-    return render_template('login.html')
+    return render_template('login.html', STATE=state)
 
 
 # Resturant CRUD
