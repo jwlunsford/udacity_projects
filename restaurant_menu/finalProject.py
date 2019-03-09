@@ -23,7 +23,7 @@ CLIENT_ID = json.loads(
 APPLICATION_NAME = "Restaurant Menu Application"
 
 
-engine = create_engine('sqlite:///restaurantmenu.db')
+engine = create_engine('sqlite:///restaurantmenuwithusers.db')
 Base.metadata.bind = engine
 
 DBSession = sessionmaker(bind=engine)
@@ -187,8 +187,11 @@ def gdisconnect():
 @app.route('/restaurants/')
 def showRestaurants():
     # show all restaurants
-    restaurants = session.query(Restaurant).all()
-    return render_template('restaurant.html', restaurants=restaurants)
+    restaurants = session.query(Restaurant).order_by(asc(Restaurant.name))
+    if 'username' not in login_session:
+        return render_template('publicrestaurants.html', restaurants=restaurants)
+    else:
+        return render_template('restaurant.html', restaurants=restaurants)
 
 
 @app.route('/restaurant/new', methods=['GET', 'POST'])
@@ -226,9 +229,11 @@ def editRestaurant(restaurant_id):
 @app.route('/restaurant/<int:restaurant_id>/delete', methods=['GET', 'POST'])
 def deleteRestaurant(restaurant_id):
     # delete a restaurant
+    restaurantToDelete = session.query(Restaurant).filter_by(id=restaurant_id).one()
     if 'username' not in login_session:
         return redirect('/login')
-    thisRestaurant = session.query(Restaurant).filter_by(id=restaurant_id).one()
+    if restaurantToDelete.user_id != login_session['user_id']:
+        return "<script>function myFunction() {alert('You are not authorized to delete this restaurant. Please create your own restaurant in order to delete.'); }</script><body onload='myFunction()''>"
     if request.method == 'POST':
         session.delete(thisRestaurant)
         session.commit()
@@ -240,10 +245,15 @@ def deleteRestaurant(restaurant_id):
 
 # Menu CRUD
 @app.route('/restaurants/<int:restaurant_id>/')
-def restaurantMenu(restaurant_id):
+@app.route('/restaurants/<int:restaurant_id>/menu')
+def showMenu(restaurant_id):
     restaurant = session.query(Restaurant).filter_by(id=restaurant_id).one()
+    creator = getUserInfo(restaurant.user_id)
     items = session.query(MenuItem).filter_by(restaurant_id=restaurant_id).all()
-    return render_template('menu.html', items=items, restaurant=restaurant)
+    if 'username' not in login_session or creator.id != login_session['user_id']:
+        return render_template('publicmenu.html', items=items, restaurant=restaurant, creator=creator)
+    else:
+        return render_template('menu.html', items=items, restaurant=restaurant, creator=creator)
 
 
 # Task 1:  Create route for newMenuItem
