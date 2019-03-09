@@ -301,6 +301,19 @@ def createUser(login_session):
     return user.id
 
 
+def getUserInfo(user_id):
+    user = session.query(User).filter_by(id=user_id).one()
+    return user
+
+
+def getUserId(email):
+    try:
+        user = session.query(User).filter_by(email=email).one()
+        return user.id
+    except:
+        return None
+
+
 
 if __name__ == '__main__':
     app.secret_key = 'Super_Strong_Secret_Key'
