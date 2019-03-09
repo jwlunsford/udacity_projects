@@ -18,7 +18,7 @@ class User(Base):
 
     name = Column(String(250), nullable=False)
     email = Column(String(250), nullable=False)
-    picture = Columm(String(250))
+    picture = Column(String(250))
     id = Column(Integer, primary_key=True)
 
 
