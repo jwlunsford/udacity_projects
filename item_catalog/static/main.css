@@ -1,3 +1,11 @@
 body {
   padding-top:70px;
 }
+
+/* the thumbnail image width is dependent on the width of the thumbnail, which
+is set by the width of the flexgrid and padding.  The col dimensions are 303px,
+and the thumnail is 273px (because the padding on the col is 30px). */
+.thumbnail img {
+  height:295px;
+  width:320px;
+}
