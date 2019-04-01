@@ -70,7 +70,7 @@ def deleteCategory(id=id):
 
 @app.route("/category/<int:id>/items/")
 def showItems(id):
-    """return all items in the database"""
+    """return all items in the database for a given category"""
     pass
 
 
@@ -82,7 +82,7 @@ def getItem(id):
 
 @app.route("/categories/<int:id>/new/", methods=['GET', 'POST'])
 def newItem():
-    """create a new item in the datasbase"""
+    """create a new item in the datasbase under a given category"""
     pass
 
 
@@ -96,6 +96,7 @@ def editItem(id=id):
 def deleteItem(id=id):
     """delete an item from the database"""
     pass
+
 
 
 
