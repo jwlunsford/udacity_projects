@@ -115,9 +115,10 @@ def deleteItem(id=id):
 # WTForms
 class ItemForm(FlaskForm):
     """WTF class for the Item Form"""
-    name = StringField("What is the item name?", validators=[Required()])
-    photo_filename = StringField("Enter the filename (with extension) of the photo?")
-    descripton = StringField("Enter a short description of the item.", validators=[Required()])
+    name = StringField('What is the item name?', validators=[Required()])
+    photo_filename = StringField('Enter the filename, including extension, of the photo.')
+    descripton = StringField('Enter a short description of the item.', validators=[Required()])
+    submit = SubmitField('Submit')
 
 
 
