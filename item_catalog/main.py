@@ -1,6 +1,9 @@
 # flask imports
 from flask import Flask, render_template, request, redirect, url_for, flash, jsonify, make_response
 from flask_bootstrap import Bootstrap
+from flask_wtf import FlaskForm
+from wtforms import StringField, SubmitField
+from wtfroms.validators import Required, Email
 
 # database imports
 from sqlalchemy import create_engine
