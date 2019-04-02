@@ -38,7 +38,7 @@ class Item(Base):
     id = Column(Integer, primary_key=True)
     name = Column(String(250), nullable=False)
     photo_filename = Column(String(250))
-    description = Column(String(250), nullable=False)
+    description = Column(String(180), nullable=False)
     category_id = Column(Integer, ForeignKey('category.id'))
     created_on = Column(DateTime(), default=datetime.now)
     updated_on = Column(DateTime(), default=datetime.now,
