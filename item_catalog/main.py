@@ -3,7 +3,7 @@ from flask import Flask, render_template, request, redirect, url_for, flash, jso
 from flask_bootstrap import Bootstrap
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField
-from wtfroms.validators import Required, Email
+from wtforms.validators import Required, Email
 
 # database imports
 from sqlalchemy import create_engine
@@ -39,6 +39,7 @@ session = DBSession()
 # CATEGORY ROUTES GO HERE
 
 # temporary data until DB is connected - for testing
+user = {'id':1, 'username':'jon', 'email':'jon@mail.com'}
 category = {'id':1, 'name':'evergreen'}
 item = {'id':1, 'name':'American Elm', 'photo_filename':'american_elm.png',
         'description':'American Elm (Ulmus americana) can grow to 60 feet tall and 3 feet in diameter.  The wood is strong and difficult to split, which makes it good for saddle trees, and veneer for baskets and crates.', 'category_id':2}
@@ -102,7 +103,11 @@ def newItem():
 @app.route("/item/<int:id>/edit/", methods=['GET', 'POST'])
 def editItem(id=id):
     """edit an item in the database"""
-    pass
+    # retrieve the item by id
+    id = id - 1     # this is needed because we are retrieving the item by idx
+    item = items[id]
+    user = user
+    return render_template('editItems.html', item=item, user=user)
 
 
 @app.route("/item/<int:id>/delete/", methods=['GET', 'POST'])
