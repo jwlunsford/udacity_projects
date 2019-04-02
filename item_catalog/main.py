@@ -18,6 +18,8 @@ from oauth2client.client import FlowExchangeError
 import httplib2
 import json
 import requests
+import random
+import string
 
 
 app = Flask(__name__)
@@ -106,8 +108,8 @@ def editItem(id=id):
     # retrieve the item by id
     id = id - 1     # this is needed because we are retrieving the item by idx
     item = items[id]
-    user = user
-    return render_template('editItems.html', item=item, user=user)
+    form = ItemForm()
+    return render_template('editItems.html', form=form, item=item, user=user)
 
 
 @app.route("/item/<int:id>/delete/", methods=['GET', 'POST'])
