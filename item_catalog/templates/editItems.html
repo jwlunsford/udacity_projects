@@ -3,15 +3,14 @@
 
 {% block page_content %}
 
-<div class="page_header">
-  {% if name %}
-    <h1>Hello, {{ user.name }}!</h1>
-    <h3>Use the form below to edit the {{ item.name }}</h3>
-    {{ wtf.quick_form(form) }}
-  {% else %}
-    <h1>Hello, Stranger!</h1>
-    <h3>You are not allowed to edit an item.</h3>
-  {% endif %}
-</div>
+{% if user %}
+  <h1>Hello, {{ user.username }}!</h1>
+  <h3>Use the form below to edit {{ item.name }}</h3>
+  {{ wtf.quick_form(form) }}
+{% else %}
+  <h1>Hello, Stranger!</h1>
+  <h3>You are not allowed to edit a Tree.</h3>
+{% endif %}
+
 
 {% endblock %}
