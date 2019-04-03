@@ -72,13 +72,13 @@ def newCategory():
 
 
 @app.route("/category/<int:id>/edit/", methods=['GET', 'POST'])
-def editCategory(id=id):
+def editCategory(id):
     """edit a category in the database"""
     pass
 
 
 @app.route("/category/<int:id>/delete/", methods=['GET', 'POST'])
-def deleteCategory(id=id):
+def deleteCategory(id):
     """delete a category from the database"""
     pass
 
@@ -99,26 +99,27 @@ def getItem(id):
 
 
 @app.route("/category/<int:id>/new/", methods=['GET', 'POST'])
-def newItem(id=id):
+def newItem(id):
     """create a new item in the datasbase under a given category"""
     form = ItemForm()
     return render_template('newItems.html', form=form, user=user)
 
 
 @app.route("/item/<int:id>/edit/", methods=['GET', 'POST'])
-def editItem(id=id):
+def editItem(id):
     """edit an item in the database"""
     # retrieve the item by id
     id = id - 1     # this is needed because we are retrieving the item by idx
     item = items[id]
     form = ItemForm()
-    return render_template('editItems.html', form=form, item=item, user=user)
+    return render_template('editItems.html', item=item, user=user)
 
 
 @app.route("/item/<int:id>/delete/", methods=['GET', 'POST'])
-def deleteItem(id=id):
+def deleteItem(id):
     """delete an item from the database"""
-    pass
+    item = items[id]
+    return render_template('deleteItems.html', item=item, user=user)
 
 
 
