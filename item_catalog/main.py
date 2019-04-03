@@ -98,10 +98,11 @@ def getItem(id):
     pass
 
 
-@app.route("/categories/<int:id>/new/", methods=['GET', 'POST'])
-def newItem():
+@app.route("/category/<int:id>/new/", methods=['GET', 'POST'])
+def newItem(id=id):
     """create a new item in the datasbase under a given category"""
-    pass
+    form = ItemForm()
+    return render_template('newItems.html', form=form, user=user)
 
 
 @app.route("/item/<int:id>/edit/", methods=['GET', 'POST'])
@@ -124,9 +125,9 @@ def deleteItem(id=id):
 # WTForms
 class ItemForm(FlaskForm):
     """WTF class for the Item Form"""
-    name = StringField('What is the item name?', validators=[DataRequired()])
-    photo_filename = StringField('Enter the filename, including extension, of the photo.')
-    descripton = StringField('Enter a short description of the item.', validators=[DataRequired()])
+    name = StringField('Enter the common name for the tree.', validators=[DataRequired()])
+    photo_filename = StringField("Enter the filename and extension of the photo (ex: \'my_picture.jpg\').")
+    descripton = StringField('Enter a short description of the tree...', validators=[DataRequired()])
     submit = SubmitField('Submit')
 
 
