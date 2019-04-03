@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block page_content %}
+
+{% if user %}
+  <div>
+    <h1>Hello, {{ user.username }}!</h1>
+    <h3>Are you sure you want to delete {{ item.name }} from the database?</h3><br />
+  </div>
+  <form action="" method="POST">
+    <button type='submit' class='btn btn-danger'>Delete</button>
+    <a class='btn btn-primary' role='button' href='#'>Cancel</a>
+  </form>
+{% else %}
+  <h1>Hello, Stranger!</h1>
+  <h3>You are not allowed to delete a Tree.</h3>
+{% endif %}
+
+
+{% endblock %}
