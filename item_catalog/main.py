@@ -114,6 +114,7 @@ def newItem(id):
                            description=description, category_id=id)
         session.add(createdItem)
         session.commit()
+        flash('New {} tree created!'.format(name))
         return redirect(url_for('showItems', id=id))
     # handle the GET request
     return render_template('newItems.html', form=form, user=user)
