@@ -1,5 +1,5 @@
 # flask imports
-from flask import Flask, render_template, request, redirect, url_for, flash, jsonify, make_response
+from flask import Flask, render_template, session, request, redirect, url_for, flash, jsonify, make_response
 from flask_bootstrap import Bootstrap
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField
@@ -38,7 +38,7 @@ session = DBSession()
 # API ENDPOINTS GO HERE
 
 
-# CATEGORY ROUTES GO HERE
+
 
 # temporary data until DB is connected - for testing
 user = {'id':1, 'username':'jon', 'email':'jon@mail.com'}
@@ -52,6 +52,9 @@ items = [{'id':1, 'name':'American Elm', 'photo_filename':'american_elm.png',
         {'id':4, 'name':'Black Hickory', 'photo_filename':'black_hickory.png', 'description':'Black Hickory (Carya texana) grows on hillsides and sandy uplands.  This tree can grow to 75 feet tall and 2 feet in diameter.  The wood is hard, but brittle, and makes good fuelwood.', 'category_id':2},
         {'id':5, 'name':'Honeylocust', 'photo_filename':'honeylocust.png', 'description':'Honeylocust (Gleditsia triacanthos) can grow to 75 feet tall and 30 inches in diameter.  The wood is course-grained, strong, and moderately durable.', 'category_id':2}
         ]
+
+
+# CATEGORY ROUTES GO HERE
 
 @app.route("/categories/")
 def showCategories():
@@ -100,8 +103,19 @@ def getItem(id):
 
 @app.route("/category/<int:id>/new/", methods=['GET', 'POST'])
 def newItem(id):
-    """create a new item in the datasbase under a given category"""
+    """create a new item in the database under a given category"""
     form = ItemForm()
+    # handle the POST request
+    if form.validate_on_submit():
+        name = form.name.data
+        photo = form.photo_filename.data
+        description = form.description.data
+        createdItem = Item(name=name, photo_filename=photo,
+                           description=description, category_id=id)
+        session.add(createdItem)
+        session.commit()
+        return redirect(url_for('showItems', id=id))
+    # handle the GET request
     return render_template('newItems.html', form=form, user=user)
 
 
