@@ -92,7 +92,8 @@ def deleteCategory(category_id):
 @app.route("/category/<int:category_id>/items/")
 def showItems(category_id):
     """return all items in the database for a given category"""
-    category = session.query(Category).filter_by(category_id=category_id).first()
+    category = session.query(Category).filter_by(id=category_id).first()
+    items = session.query(Item).filter_by(category_id=category_id).all()
     return render_template('showItems.html', items=items, category=category)
 
 
@@ -115,13 +116,13 @@ def newItem(category_id):
                            description=description, category_id=category_id)
         session.add(createdItem)
         session.commit()
-        flash('New {} tree created!'.format(name))
-        return redirect(url_for('showItems', id=id))
+        print('New {} tree created!'.format(name))
+        return redirect(url_for('showItems', category_id=category_id))
     # handle the GET request
     return render_template('newItems.html', form=form, user=user)
 
 
-@app.route("/category/<int:category_id/<int:item_id>/edit/", methods=['GET', 'POST'])
+@app.route("/category/<int:category_id>/<int:item_id>/edit/", methods=['GET', 'POST'])
 def editItem(category_id, item_id):
     """edit an item in the database"""
     # retrieve the item
@@ -134,7 +135,7 @@ def editItem(category_id, item_id):
         item.photo_filename = form.photo_filename.data
         item.description = form.description.data
         flash("Tree {} has been updated!".format(item.name))
-        return redirect(url_for('showItems'), category_id=category_id)
+        return redirect(url_for('showItems', category_id=category_id))
     # handle the GET request
     return render_template('editItems.html', item=item, user=user)
 
@@ -152,7 +153,7 @@ class ItemForm(FlaskForm):
     """WTF class for the Item Form"""
     name = StringField('Enter the common name for the tree.', validators=[DataRequired()])
     photo_filename = StringField("Enter the filename and extension of the photo (ex: \'my_picture.jpg\').")
-    descripton = StringField('Enter a short description of the tree...', validators=[DataRequired()])
+    description = StringField('Enter a short description of the tree...', validators=[DataRequired()])
     submit = SubmitField('Submit')
 
 
