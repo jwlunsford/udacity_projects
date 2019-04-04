@@ -121,15 +121,21 @@ def newItem(category_id):
     return render_template('newItems.html', form=form, user=user)
 
 
-@app.route("/item/<int:item_id>/edit/", methods=['GET', 'POST'])
-def editItem(item_id):
+@app.route("/category/<int:category_id/<int:item_id>/edit/", methods=['GET', 'POST'])
+def editItem(category_id, item_id):
     """edit an item in the database"""
     # retrieve the item
-    item = session.query(Item).filter_by(id=id).first()
-
-    id = id - 1     # this is needed because we are retrieving the item by idx
-    item = items[id]
+    item = session.query(Item).filter_by(id=item_id).first()
     form = ItemForm()
+    # handle the POST request
+    if form.validate_on_submit():
+        # update the item data
+        item.name = form.name.data
+        item.photo_filename = form.photo_filename.data
+        item.description = form.description.data
+        flash("Tree {} has been updated!".format(item.name))
+        return redirect(url_for('showItems'), category_id=category_id)
+    # handle the GET request
     return render_template('editItems.html', item=item, user=user)
 
 
