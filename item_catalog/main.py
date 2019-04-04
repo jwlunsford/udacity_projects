@@ -62,8 +62,8 @@ def showCategories():
     pass
 
 
-@app.route("/category/<int:id>/")
-def getCategory(id):
+@app.route("/category/<int:category_id>/")
+def getCategory(category_id):
     """return a specific category matching the category.id"""
     pass
 
@@ -74,14 +74,14 @@ def newCategory():
     pass
 
 
-@app.route("/category/<int:id>/edit/", methods=['GET', 'POST'])
-def editCategory(id):
+@app.route("/category/<int:category_id>/edit/", methods=['GET', 'POST'])
+def editCategory(category_id):
     """edit a category in the database"""
     pass
 
 
-@app.route("/category/<int:id>/delete/", methods=['GET', 'POST'])
-def deleteCategory(id):
+@app.route("/category/<int:category_id>/delete/", methods=['GET', 'POST'])
+def deleteCategory(category_id):
     """delete a category from the database"""
     pass
 
@@ -89,20 +89,21 @@ def deleteCategory(id):
 
 # ITEM ROUTES GO HERE
 
-@app.route("/category/<int:id>/items/")
-def showItems(id):
+@app.route("/category/<int:category_id>/items/")
+def showItems(category_id):
     """return all items in the database for a given category"""
+    category = session.query(Category).filter_by(category_id=category_id).first()
     return render_template('showItems.html', items=items, category=category)
 
 
-@app.route("/item/<int:id>/")
-def getItem(id):
+@app.route("/item/<int:item_id>/")
+def getItem(item_id):
     """return a specific item in the database"""
     pass
 
 
-@app.route("/category/<int:id>/new/", methods=['GET', 'POST'])
-def newItem(id):
+@app.route("/category/<int:category_id>/new/", methods=['GET', 'POST'])
+def newItem(category_id):
     """create a new item in the database under a given category"""
     form = ItemForm()
     # handle the POST request
@@ -111,7 +112,7 @@ def newItem(id):
         photo = form.photo_filename.data
         description = form.description.data
         createdItem = Item(name=name, photo_filename=photo,
-                           description=description, category_id=id)
+                           description=description, category_id=category_id)
         session.add(createdItem)
         session.commit()
         flash('New {} tree created!'.format(name))
@@ -120,20 +121,22 @@ def newItem(id):
     return render_template('newItems.html', form=form, user=user)
 
 
-@app.route("/item/<int:id>/edit/", methods=['GET', 'POST'])
-def editItem(id):
+@app.route("/item/<int:item_id>/edit/", methods=['GET', 'POST'])
+def editItem(item_id):
     """edit an item in the database"""
-    # retrieve the item by id
+    # retrieve the item
+    item = session.query(Item).filter_by(id=id).first()
+
     id = id - 1     # this is needed because we are retrieving the item by idx
     item = items[id]
     form = ItemForm()
     return render_template('editItems.html', item=item, user=user)
 
 
-@app.route("/item/<int:id>/delete/", methods=['GET', 'POST'])
-def deleteItem(id):
+@app.route("/item/<int:item_id>/delete/", methods=['GET', 'POST'])
+def deleteItem(item_id):
     """delete an item from the database"""
-    item = items[id]
+    item = items[item_id]
     return render_template('deleteItems.html', item=item, user=user)
 
 
