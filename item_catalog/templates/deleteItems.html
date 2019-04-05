@@ -10,7 +10,7 @@
   </div>
   <form action="" method="POST">
     <button type='submit' class='btn btn-danger'>Delete</button>
-    <a class='btn btn-primary' role='button' href='#'>Cancel</a>
+    <a class='btn btn-primary' role='button' href="{{ url_for('showItems', category_id=category_id) }}">Cancel</a>
   </form>
 {% else %}
   <h1>Hello, Stranger!</h1>
