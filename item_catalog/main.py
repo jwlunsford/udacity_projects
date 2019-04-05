@@ -140,10 +140,18 @@ def editItem(category_id, item_id):
     return render_template('editItems.html', item=item, user=user)
 
 
-@app.route("/item/<int:item_id>/delete/", methods=['GET', 'POST'])
-def deleteItem(item_id):
+@app.route("/category/<int:category_id>/<int:item_id>/delete/", methods=['GET', 'POST'])
+def deleteItem(category_id, item_id):
     """delete an item from the database"""
-    item = items[item_id]
+    # get the item from the database
+    item = session.query(Item).filter_by(id=item_id).first()
+    # if this is a post action, delete the item, and redirect
+    if request.method == 'POST':
+        session.delete(item)
+        session.commit()
+        flash("Item {} has been deleted from the database.".format(item.name))
+        return redirect(url_for('showItems', category_id=category_id))
+    # if this is a get show the deleteItems html
     return render_template('deleteItems.html', item=item, user=user)
 
 
