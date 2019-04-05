@@ -37,11 +37,9 @@
 <div class="container-fluid">
   {% with messages = get_flashed_messages() %}
       {% if messages %}
-        <ul>
           {% for message in messages %}
-          <li class="alert alert-warning" role="alert">{{ message }}</li>
+          <div class="alert alert-warning" role="alert">{{ message }}></div>
           {% endfor %}
-        </ul>
       {% endif %}
     {% endwith %}
 
