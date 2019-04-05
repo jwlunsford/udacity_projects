@@ -152,7 +152,7 @@ def deleteItem(category_id, item_id):
         flash("Item: {} was successfully deleted from the database.".format(item.name))
         return redirect(url_for('showItems', category_id=category_id))
     # if this is a get show the deleteItems html
-    return render_template('deleteItems.html', item=item, user=user)
+    return render_template('deleteItems.html', item=item, user=user, category_id=category_id)
 
 
 
