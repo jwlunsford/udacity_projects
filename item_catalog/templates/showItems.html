@@ -18,7 +18,7 @@
           <p class="card-text">{{ item.description }}</p>
         </div>
         <div class="card-footer">
-          <a href="#" class="btn btn-info ml-0 mt-auto" role="button">Edit</a>
+          <a href="{{ url_for('editItem', item_id=item.id, category_id=item.category_id) }}" class="btn btn-info ml-0 mt-auto" role="button">Edit</a>
           <a href="{{ url_for('deleteItem', item_id=item.id, category_id=item.category_id) }}" class="btn btn-info ml-0 mt-auto" role="button">Delete</a>
         </div>
       </div>

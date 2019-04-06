@@ -6,7 +6,21 @@
 {% if user %}
   <h1>Hello, {{ user.username }}!</h1>
   <h3>Use the form below to edit {{ item.name }}</h3>
-  {{ wtf.quick_form(form) }}
+  <hr>
+  <form action="" method="post" class="form" role="form">
+    {{ form.csrf_token() }}
+    <dl>
+      <!-- IF YOU ACCESS VARIABLES INSIDE TAGS DON'T PUT THE BRACES AROUND THEM -->
+      {{ wtf.form_field(form.name, class="form-control", placeholder=item.name) }}
+      {{ wtf.form_field(form.photo_filename, class="form-control", placeholder=item.photo_filename) }}
+      {{ wtf.form_field(form.description, class="form-control") }}
+    </dl>
+    <p>
+      <input type="submit" class="btn btn-warning">
+      <a href="{{ url_for('showItems', category_id=item.category_id) }}" class="btn btn-info ml-0 mt-auto" role="button">Cancel</a>
+    </p>
+  </form>
+
 {% else %}
   <h1>Hello, Stranger!</h1>
   <h3>You are not allowed to edit a Tree.</h3>
