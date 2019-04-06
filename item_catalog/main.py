@@ -137,7 +137,7 @@ def editItem(category_id, item_id):
         flash("Tree {} has been updated!".format(item.name))
         return redirect(url_for('showItems', category_id=category_id))
     # handle the GET request
-    return render_template('editItems.html', item=item, user=user)
+    return render_template('editItems.html', item=item, user=user, form=form)
 
 
 @app.route("/category/<int:category_id>/<int:item_id>/delete/", methods=['GET', 'POST'])
