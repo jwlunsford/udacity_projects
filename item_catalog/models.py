@@ -46,6 +46,17 @@ class Item(Base):
 
     category = relationship('Category', backref=backref('item', order_by=id))
 
+    @property
+    def serialize(self):
+        """represents an object in JSON format for API enpoints"""
+        return {
+            'id':self.id,
+            'name':self.name,
+            'photo_filename':self.photo_filename,
+            'description':self.description,
+            'category_id':self.category_id
+        }
+
 
 
 engine = create_engine('sqlite:///catalog.db')
