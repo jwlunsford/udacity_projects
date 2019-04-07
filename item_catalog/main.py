@@ -88,6 +88,12 @@ def deleteCategory(category_id):
 
 
 # ITEM ROUTES GO HERE
+@app.route("/")
+def showIndex():
+    """return the index.html page."""
+    return render_template('index.html')
+
+
 
 @app.route("/category/<int:category_id>/items/")
 def showItems(category_id):
