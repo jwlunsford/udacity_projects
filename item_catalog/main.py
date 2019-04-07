@@ -35,7 +35,6 @@ session = DBSession()
 # AUTH GOES HERE
 
 
-# API ENDPOINTS GO HERE
 
 
 
@@ -54,37 +53,12 @@ items = [{'id':1, 'name':'American Elm', 'photo_filename':'american_elm.png',
         ]
 
 
-# CATEGORY ROUTES GO HERE
-
-@app.route("/categories/")
-def showCategories():
-    """return all categories in the database"""
-    pass
-
-
-@app.route("/category/<int:category_id>/")
-def getCategory(category_id):
-    """return a specific category matching the category.id"""
-    pass
-
-
-@app.route("/category/new/", methods=['GET', 'POST'])
-def newCategory():
-    """create a new category in the database"""
-    pass
-
-
-@app.route("/category/<int:category_id>/edit/", methods=['GET', 'POST'])
-def editCategory(category_id):
-    """edit a category in the database"""
-    pass
-
-
-@app.route("/category/<int:category_id>/delete/", methods=['GET', 'POST'])
-def deleteCategory(category_id):
-    """delete a category from the database"""
-    pass
-
+# API ENDPOINTS GO HERE - JSON
+@app.route("/api/v1/category/<int:category_id>/items/JSON")
+def categoryItemsJSON(category_id):
+    """returns a serialized version of the items for a particular category."""
+    items = session.query(Item).filter_by(category_id=category_id).all()
+    return jsonify(Items=[i.serialize for i in items])
 
 
 # ITEM ROUTES GO HERE
