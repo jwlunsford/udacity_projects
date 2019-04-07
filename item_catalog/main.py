@@ -89,10 +89,9 @@ def deleteCategory(category_id):
 
 # ITEM ROUTES GO HERE
 @app.route("/")
-def showIndex():
+def showLandingPage():
     """return the index.html page."""
     return render_template('index.html')
-
 
 
 @app.route("/category/<int:category_id>/items/")
@@ -140,6 +139,7 @@ def editItem(category_id, item_id):
         item.name = form.name.data
         item.photo_filename = form.photo_filename.data
         item.description = form.description.data
+        # operation complete flash message to user
         flash("Tree {} has been updated!".format(item.name))
         return redirect(url_for('showItems', category_id=category_id))
     # handle the GET request
@@ -155,6 +155,7 @@ def deleteItem(category_id, item_id):
     if request.method == 'POST':
         session.delete(item)
         session.commit()
+        # operation complete flash message to user
         flash("Item: {} was successfully deleted from the database.".format(item.name))
         return redirect(url_for('showItems', category_id=category_id))
     # if this is a get show the deleteItems html
@@ -162,7 +163,7 @@ def deleteItem(category_id, item_id):
 
 
 
-# WTForms
+# WTForms: simplifies HTML form creation, and provides CSRF protection
 class ItemForm(FlaskForm):
     """WTF class for the Item Form"""
     name = StringField('Enter the common name for the tree.', validators=[DataRequired()])
