@@ -61,6 +61,13 @@ def categoryItemsJSON(category_id):
     return jsonify(Items=[i.serialize for i in items])
 
 
+@app.route("/api/v1/item/<int:item_id>/JSON")
+def itemJSON(item_id):
+    """returns a serialized verions of a specific item."""
+    item = session.query(Item).filter_by(id=item_id).one()
+    return jsonify(Item=item.serialize)
+
+
 # ITEM ROUTES GO HERE
 @app.route("/")
 def showLandingPage():
