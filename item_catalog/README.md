@@ -1,5 +1,5 @@
 # Tree Catalog
-Welcome to the Github page for the Tree Catalog application.  This is a simple web application that demonstrates the power of Flask and it's associated libraries.  This application was created for learning purposes as a requirement for the _Full Stack Nanodegree Course_ at Udacity.
+Welcome to the Github page for the Tree Catalog application.  This is a simple web application that demonstrates the power of Flask and it's associated libraries.  This application was created for learning purposes as a requirement for the **_Full Stack Nanodegree Course_** at Udacity.
 
 ## Requirements
 The Tree Catalog Application was created using the most recent version of the libraries listed below.  These components should be installed on your system prior to running the web application.
