@@ -206,6 +206,7 @@ def newItem(category_id):
         return redirect('/login')
     form = ItemForm()
     # handle the POST request
+    user = session.query(User).filter_by(username=login_session['username']).one()
     if form.validate_on_submit():
         name = form.name.data
         photo = form.photo_filename.data
@@ -217,8 +218,7 @@ def newItem(category_id):
         flash('New {} tree created!'.format(name))
         return redirect(url_for('showItems', category_id=category_id))
     # handle the GET request
-    user = session.query(User).filter_by(username=login_session['username']).one()
-    return render_template('newItems.html', form=form, user=user)
+    return render_template('newItems.html', form=form, user=user, category=category_id)
 
 
 @app.route("/category/<int:category_id>/<int:item_id>/edit/", methods=['GET', 'POST'])
@@ -229,6 +229,7 @@ def editItem(category_id, item_id):
         return redirect('/login')
     # retrieve the item
     item = session.query(Item).filter_by(id=item_id).first()
+    user = session.query(User).filter_by(username=login_session['username']).one()
     form = ItemForm()
     # handle the POST request
     if form.validate_on_submit():
@@ -251,6 +252,7 @@ def deleteItem(category_id, item_id):
         return redirect('/login')
     # get the item from the database
     item = session.query(Item).filter_by(id=item_id).first()
+    user = session.query(User).filter_by(username=login_session['username']).one()
     # if this is a post action, delete the item, and redirect
     if request.method == 'POST':
         session.delete(item)
