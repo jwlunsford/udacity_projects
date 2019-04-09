@@ -28,12 +28,15 @@
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
+        {% if 'username' not in session %}
         <li class="nav-item">
           <a class="nav-link" href="{{ url_for('showLogin') }}">Sign In</a>
         </li>
+        {% else %}
         <li class="nav-item">
           <a class="nav-link" href="{{ url_for('gdisconnect') }}">Sign Out</a>
         </li>
+        {% endif %}
       </ul>
   </div><!-- /.navbar-collapse -->
 </nav>
