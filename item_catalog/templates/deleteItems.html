@@ -5,7 +5,7 @@
 
 {% if user %}
   <div>
-    <h1>Hello, {{ user.username }}!</h1>
+    <h1>{{ user.username }}:</h1>
     <h3>Are you sure you want to delete {{ item.name }} from the database?</h3><br />
   </div>
   <form action="" method="POST">
