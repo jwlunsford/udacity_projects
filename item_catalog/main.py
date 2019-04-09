@@ -217,6 +217,7 @@ def newItem(category_id):
         flash('New {} tree created!'.format(name))
         return redirect(url_for('showItems', category_id=category_id))
     # handle the GET request
+    user = session.query(User).filter_by(username=login_session['username']).one()
     return render_template('newItems.html', form=form, user=user)
 
 
