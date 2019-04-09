@@ -24,6 +24,6 @@ Once the required dependencies are installed on your machine, you are ready to r
 If everything was installed correctly, this will start the Flask Application running in the background.
 
 ## Usage
-> Once the Flask Server is running in the background, open a Browser and type `localhost:5000` into the address bar and press enter.   This will navigate to the Tree Catalog landing page.   From the landing page, you can click the Navigation links to view trees by Category (Deciduous and Evergreen).
-> You will need to sign in to make changes to the underlying data (Create, Update or Delete Trees).  The Web Application uses your Google account to log you in.  If you do not have a Google Account, you will need to create one to access this functionality in the application.
-> NOTE:  You can still view trees by category without logging in to the application.
+* Once the Flask Server is running in the background, open a Browser and type `localhost:5000` into the address bar and press enter.   This will navigate to the Tree Catalog landing page.   From the landing page, you can click the Navigation links to view trees by Category (Deciduous and Evergreen).
+* You will need to sign in to make changes to the underlying data (Create, Update or Delete Trees).  The Web Application uses your Google account to log you in.  If you do not have a Google Account, you will need to create one to access this functionality in the application.
+* NOTE:  You can still view trees by category without logging in to the application.
