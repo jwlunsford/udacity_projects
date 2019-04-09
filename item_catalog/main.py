@@ -201,6 +201,9 @@ def getItem(item_id):
 @app.route("/category/<int:category_id>/new/", methods=['GET', 'POST'])
 def newItem(category_id):
     """create a new item in the database under a given category"""
+    # check for user login
+    if 'username' not in login_session:
+        return redirect('/login')
     form = ItemForm()
     # handle the POST request
     if form.validate_on_submit():
@@ -220,6 +223,9 @@ def newItem(category_id):
 @app.route("/category/<int:category_id>/<int:item_id>/edit/", methods=['GET', 'POST'])
 def editItem(category_id, item_id):
     """edit an item in the database"""
+    # check for user login
+    if 'username' not in login_session:
+        return redirect('/login')
     # retrieve the item
     item = session.query(Item).filter_by(id=item_id).first()
     form = ItemForm()
@@ -239,6 +245,9 @@ def editItem(category_id, item_id):
 @app.route("/category/<int:category_id>/<int:item_id>/delete/", methods=['GET', 'POST'])
 def deleteItem(category_id, item_id):
     """delete an item from the database"""
+    # check for user login
+    if 'username' not in login_session:
+        return redirect('/login')
     # get the item from the database
     item = session.query(Item).filter_by(id=item_id).first()
     # if this is a post action, delete the item, and redirect
