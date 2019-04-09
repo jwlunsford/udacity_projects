@@ -1,5 +1,5 @@
 # Tree Catalog
-Welcome to the Github page for the Tree Catalog application.  This is a simple web application that demonstrates the power of Flask and it's associated libraries.  This application was created for learning purposes as a requirment for the Full Stack Nanodegree course at Udacity.
+Welcome to the Github page for the Tree Catalog application.  This is a simple web application that demonstrates the power of Flask and it's associated libraries.  This application was created for learning purposes as a requirement for the _Full Stack Nanodegree Course_ at Udacity.
 
 ## Requirements
 The Tree Catalog Application was created using the most recent version of the libraries listed below.  These components should be installed on your system prior to running the web application.
@@ -14,7 +14,7 @@ The Tree Catalog Application was created using the most recent version of the li
 * requests
 
 ## Installation and Flask Startup
-Depending on your preferences, you may choose to install all of the required components using a Virtual Environment as described by [this article](https://docs.python-guide.org/dev/virtualenvs/).  I have found that this makes it easier to keep all the required packages organized.
+Depending on your preferences, you may choose to install all of the required components using a Virtual Environment as described in [this article](https://docs.python-guide.org/dev/virtualenvs/).  I have found that this makes it easier to keep all the required packages organized.
 
 Once the required dependencies are installed on your machine, you are ready to run the web application using Flask.  The following steps will help you duplicate the code on your machine.
 
@@ -24,6 +24,6 @@ Once the required dependencies are installed on your machine, you are ready to r
 If everything was installed correctly, this will start the Flask Application running in the background.
 
 ## Usage
-* Once the Flask Server is running in the background, open a Browser and type `localhost:5000` into the address bar and press enter.   This will navigate to the Tree Catalog landing page.   From the landing page, you can click the Navigation links to view trees by Category (Deciduous and Evergreen).
+* Once the Flask Server is running in the background, open a Browser and type `localhost:5000` into the address bar and press Enter.   This will navigate to the Tree Catalog landing page.   From the landing page, you can click the Navigation links to view trees by Category (Deciduous and Evergreen).
 * You will need to sign in to make changes to the underlying data (Create, Update or Delete Trees).  The Web Application uses your Google account to log you in.  If you do not have a Google Account, you will need to create one to access this functionality in the application.
 * NOTE:  You can still view trees by category without logging in to the application.
