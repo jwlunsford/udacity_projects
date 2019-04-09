@@ -121,8 +121,6 @@ def gconnect():
     output += '<h1>Welcome, '
     output += login_session['username']
     output += '!</h1>'
-    output += '<img src="'
-    output += ' " style = "width: 300px; height: 300px;border-radius: 150px;-webkit-border-radius: 150px;-moz-border-radius: 150px;"> '
     flash("You are now logged in as %s" % login_session['username'])
     return output
 
@@ -146,9 +144,9 @@ def gdisconnect():
         del login_session['gplus_id']
         del login_session['username']
         del login_session['email']
-        response = make_response(json.dumps('Successfully disconnected.'), 200)
-        response.headers['Content-Type'] = 'application/json'
-        return response
+        # flash signout message and redirect to the landing page
+        flash("Sign out successful.")
+        return redirect(url_for('showLandingPage'))
     else:
         response = make_response(json.dumps('Failed to revoke token for given user.', 400))
         response.headers['Content-Type'] = 'application/json'
@@ -213,7 +211,7 @@ def newItem(category_id):
                            description=description, category_id=category_id)
         session.add(createdItem)
         session.commit()
-        print('New {} tree created!'.format(name))
+        flash('New {} tree created!'.format(name))
         return redirect(url_for('showItems', category_id=category_id))
     # handle the GET request
     return render_template('newItems.html', form=form, user=user)
