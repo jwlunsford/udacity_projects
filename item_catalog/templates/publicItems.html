@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block page_content %}
+
+<h6 class="text-center">
+  Source:
+  <small class="text-muted">Matoon, W.R., Webster, C.B. (2016). <em> Forest trees of texas: how to know them.</em> Project Gutenberg Ebook #52651. Located at: <a href='http://www.gutenberg.org/files/52651/52651-h/52651-h.htm'>website</a></small>
+</h6>
+
+<h1 class="text-center">{{ category['name']|upper }}</h1>
+<div class="text-center">
+  <a href="{{ url_for('newItem', category_id=category['id']) }}" class="btn btn-success" role="button">
+  Add Tree</a>
+<div class="row justify-content-center" style="height: 565px;">
+  {% for item in items %}
+    <!--<div class="card-deck">-->
+      <div class="card mx-4 mt-4" style="max-width: 350px;">
+        <img class="card-img-top h-50 w-100" src="{{ url_for('static', filename=item.photo_filename) }}" alt="...">
+        <div class="card-body h-25">
+          <h5 class="card-title">{{ item.name|capitalize }}</h5>
+          <p class="card-text">{{ item.description }}</p>
+        </div>
+        <div class="card-footer"></div>
+      </div>
+    <!--</div>-->
+  {% endfor %}
+</div>
+
+{% endblock %}
