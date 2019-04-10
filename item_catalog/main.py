@@ -1,3 +1,6 @@
+import random
+import string
+
 # flask imports
 from flask import Flask, render_template, request, redirect, url_for, flash, jsonify, make_response
 from flask import session as login_session
@@ -9,7 +12,6 @@ from wtforms.validators import DataRequired, Email
 # database imports
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from models import Base, User, Category, Item
 
 # auth imports
 from oauth2client.client import flow_from_clientsecrets
@@ -19,8 +21,8 @@ from oauth2client.client import FlowExchangeError
 import httplib2
 import json
 import requests
-import random
-import string
+
+from models import Base, User, Category, Item
 
 
 app = Flask(__name__)
@@ -36,7 +38,7 @@ session = DBSession()
 # AUTH GOES HERE
 
 CLIENT_ID = json.loads(
-                open('client_secrets.json', 'r').read())['web']['client_id']
+    open('client_secrets.json', 'r').read())['web']['client_id']
 APPLICATION_NAME = "TreeCatalog"
 
 
@@ -92,7 +94,8 @@ def gconnect():
     stored_access_token = login_session.get('access_token')
     stored_gplus_id = login_session.get('gplus_id')
     if stored_access_token is not None and gplus_id == stored_gplus_id:
-        response = make_response(json.dumps('Current user is already connected.'), 200)
+        response = make_response(json.dumps(
+            'Current user is already connected.'), 200)
         response.headers['Content-Type'] = 'application/json'
         return response
 
@@ -130,7 +133,8 @@ def gdisconnect():
     access_token = login_session.get('access_token')
     if access_token is None:
         print('Access Token is None')
-        response = make_response(json.dumps('Current user not connected.'), 401)
+        response = make_response(json.dumps(
+            'Current user not connected.'), 401)
         response.headers['Content-Type'] = 'application/json'
         return response
     print('In gdisconnect access token is {}'.format(access_token))
@@ -148,7 +152,8 @@ def gdisconnect():
         flash("Sign out successful.")
         return redirect(url_for('showLandingPage'))
     else:
-        response = make_response(json.dumps('Failed to revoke token for given user.', 400))
+        response = make_response(json.dumps(
+            'Failed to revoke token for given user.', 400))
         response.headers['Content-Type'] = 'application/json'
         return response
 
@@ -218,10 +223,12 @@ def newItem(category_id):
         flash('New {} tree created!'.format(name))
         return redirect(url_for('showItems', category_id=category_id))
     # handle the GET request
-    return render_template('newItems.html', form=form, user=user, category=category_id)
+    return render_template('newItems.html', form=form, user=user,
+                           category=category_id)
 
 
-@app.route("/category/<int:category_id>/<int:item_id>/edit/", methods=['GET', 'POST'])
+@app.route("/category/<int:category_id>/<int:item_id>/edit/",
+           methods=['GET', 'POST'])
 def editItem(category_id, item_id):
     """edit an item in the database"""
     # check for user login
@@ -229,7 +236,8 @@ def editItem(category_id, item_id):
         return redirect('/login')
     # retrieve the item
     item = session.query(Item).filter_by(id=item_id).first()
-    user = session.query(User).filter_by(username=login_session['username']).one()
+    user = session.query(User).filter_by(
+        username=login_session['username']).one()
     form = ItemForm()
     # handle the POST request
     if form.validate_on_submit():
@@ -244,7 +252,8 @@ def editItem(category_id, item_id):
     return render_template('editItems.html', item=item, user=user, form=form)
 
 
-@app.route("/category/<int:category_id>/<int:item_id>/delete/", methods=['GET', 'POST'])
+@app.route("/category/<int:category_id>/<int:item_id>/delete/",
+           methods=['GET', 'POST'])
 def deleteItem(category_id, item_id):
     """delete an item from the database"""
     # check for user login
@@ -265,6 +274,7 @@ def deleteItem(category_id, item_id):
 
 
 def createUser(login_session):
+    """add a new user to the database."""
     newUser = User(username = login_session['username'],
                    email= login_session['email'])
     session.add(newUser)
@@ -274,11 +284,13 @@ def createUser(login_session):
 
 
 def getUserInfo(user_id):
+    """get a user from the database"""
     user = session.query(User).filter_by(id=user_id).one()
     return user
 
 
 def getUserId(email):
+    """get a user's id using their email."""
     try:
         user = session.query(User).filter_by(email=email).one()
         return user.id
@@ -286,19 +298,19 @@ def getUserId(email):
         return None
 
 
-
-
 # WTForms: simplifies HTML form creation, and provides CSRF protection
 class ItemForm(FlaskForm):
     """WTF class for the Item Form"""
-    name = StringField('Enter the common name for the tree.', validators=[DataRequired()])
-    photo_filename = StringField("Enter the filename and extension of the photo (ex: \'my_picture.jpg\').")
+    name = StringField('Enter the common name for the tree.',
+                       validators=[DataRequired()])
+    photo_filename = StringField(
+        "Enter the filename and extension (ex: \'my_picture.jpg\').")
     description = StringField('Enter a short description of the tree...', validators=[DataRequired()])
     submit = SubmitField('Submit')
 
 
-
-
 if __name__ == '__main__':
-    app.config['SECRET_KEY'] = ''.join(random.choice(string.ascii_uppercase + string.digits) for x in range(32))
+    app.config['SECRET_KEY'] = ''.join(
+        random.choice(string.ascii_uppercase + string.digits)
+        for x in range(32))
     app.run(debug=True)
