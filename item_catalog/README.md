@@ -14,12 +14,12 @@ The Tree Catalog Application was created using the most recent version of the li
 * requests
 
 ## Installation and Flask Startup
-Users can install all of the required components using a Virtual Environment as described in [this article](https://docs.python-guide.org/dev/virtualenvs/).  This helps keep all the required packages organized and in an easy to manage format.
+My recommendation is to install all of the required components within a Virtual Environment as described in [this article](https://docs.python-guide.org/dev/virtualenvs/).  This will keep all the required packages organized under the same environment, using a simple and easy format.
 
-After the required dependencies are installed, run the web application using Flask.  The following steps will explain how to create a local copy of the code.
+After the required dependencies are installed, run the web application using Flask.  The following steps will explain how to create a local copy of the code and run Flask.
 
 1.  Download and unzip (or Clone) the contents of this repository using Github or Git commands from the Terminal or shell.
-2.  Navigate to the root directory (item_catalog) where the copy is located using your Terminal or command shell (using command `dir` on windows or `cd` on OSX and Linux).
+2.  Navigate to the root directory (item_catalog) where the files have been copied using a Terminal (i.e.; shell prompt).  The command `dir` on windows or `cd` on OSX and Linux, are used to navigate to the directory.  For example, on Mac OSX, you would type `cd /path/to/directory/here` to navigate to the local files.
 3.  Run the Flask server by typing the following into the Terminal (i.e.; shell) window. `$ python main.py`
 If everything was installed correctly, this will start the Flask Application running in the background on port 5000.
 
