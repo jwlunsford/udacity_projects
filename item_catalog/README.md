@@ -19,8 +19,9 @@ My recommendation is to install all of the required components within a Virtual 
 After the required dependencies are installed, run the web application using Flask.  The following steps will explain how to create a local copy of the code and run Flask.
 
 1.  Download and unzip, or Clone, the Item_Catalog project contents in this repository using Github online, or Git commands from a shell prompt.
-2.  Navigate to the root directory (item_catalog) where the files have been copied using a Terminal (i.e.; shell prompt).  The command `dir` on windows or `cd` on OSX and Linux, are used to navigate to the directory.  For example, using Mac OSX Terminal, you would type `cd /path/to/directory/here` to navigate to the local files.
-3.  Run the Flask server by typing the following into the Terminal (i.e.; shell) window. `$ python main.py`
+2.  Navigate to the root directory (item_catalog) where the files have been copied using a Terminal (i.e.; shell prompt).  The command `dir` on windows or `cd` on OSX and Linux, are used to navigate to the directory.  For example, using Mac OSX Terminal, you would type `cd /path/to/directory/here` to navigate to the local directory where the files were saved.
+4.  Run the Flask server by typing the following into the Terminal (i.e.; shell) window. `python main.py`.  NOTE:  The first time the application runs it will create a SQLite database named 'catalog.db' in the current working directory.  The initial database will be empty.  To populate the database with sample information, execute 'dummy_data.py'.  This is done by typing `python dummy_data.py` from the shell prompt.  After the data is imported, repeat step 4 to start Flask again.
+
 If everything was installed correctly, this will start the Flask Application running in the background on port 5000.
 
 ## Usage
