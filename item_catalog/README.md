@@ -29,7 +29,7 @@ If everything was installed properly, the Flask Application should be running in
 ## Usage
 * When the Flask Server is running in the background, open a Browser and type `localhost:5000` into the address bar and press Enter.   This should bring up Tree Catalog landing page in the Browser.   From the landing page, click the Navigation links to view trees by Category (Deciduous and Evergreen).
 * Login is required to make changes to the underlying data (Create, Update or Delete Trees).  The Web Application uses a Google account to log users in.  Users without a Google account will need to create one to access this functionality in the application.
-* NOTE:  Trees for each category may be viewed without logging in to the application.
+* NOTE:  A public page for viewing trees is available for unauthorized users.
 
 ## License Info
 The Tree Catalog Application is provided under the [MIT License](https://choosealicense.com/licenses/mit/), which means it is provided "AS IS" and may be used for any purpose as long as attribution is given.
