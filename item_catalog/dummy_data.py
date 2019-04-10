@@ -20,7 +20,7 @@ print("Category2 created on {}".format(category2.created_on))
 
 # Items
 am_elm = Item(name="American Elm", photo_filename="american_elm.png",
-    description="American Elm (Ulmus americana) can grow to 60 feet tall and 3 feet in diameter.  The wood is strong and difficult to split, which makes it idea for making saddle trees and for basket and crate veneer.", category_id=1, user_id=1)
+    description="American Elm (Ulmus americana) can grow to 60 feet tall and 3 feet in diameter.  The wood is strong and difficult to split, which makes it idea for making saddle trees and for basket and crate veneer.", category_id=1, user_id=2)
 bit_hick = Item(name="Bitternut Hickory", photo_filename="bitternut_hickory.png", description="Bitternut Hickory (Carya cordiformis) is a tall slender tree with a broad crown.  It can grow to 100 feet tall and 2-3 feet in diameter.  The wood is strong, heavy, and reddish brown in color.", category_id=1, user_id=1)
 
 black_oak = Item(name="Black Oak", photo_filename="black_oak.png", description="Black Oak (Quercus velutina) can grow to 80 feet tall and 1-3 feet in diameter.  The wood is hard, stong, heavy, and checks easily", category_id=1, user_id=1)
