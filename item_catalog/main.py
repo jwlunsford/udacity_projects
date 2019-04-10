@@ -129,7 +129,7 @@ def gconnect():
     return output
 
 
-@app.route('/logout/')
+@app.route('/gdisconnect')
 def gdisconnect():
     access_token = login_session.get('access_token')
     if access_token is None:
@@ -151,7 +151,8 @@ def gdisconnect():
         del login_session['email']
         # flash signout message and redirect to the landing page
         flash("Sign out successful.", 'alert alert-success')
-        return redirect(url_for('showLandingPage'))
+        # return redirect(url_for('showLandingPage'))
+        return redirect(url_for('showLogoutPage'))
     else:
         response = make_response(json.dumps(
             'Failed to revoke token for given user.', 400))
@@ -188,6 +189,12 @@ def itemJSON(item_id):
 def showLandingPage():
     """return the index.html page."""
     return render_template('index.html')
+
+
+@app.route("/logged_out")
+def showLogoutPage():
+    """return the logout.html page."""
+    return render_template('logout.html')
 
 
 @app.route("/category/<int:category_id>/items/")
