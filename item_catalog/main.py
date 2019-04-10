@@ -124,7 +124,8 @@ def gconnect():
     output += '<h1>Welcome, '
     output += login_session['username']
     output += '!</h1>'
-    flash("You are now logged in as %s" % login_session['username'])
+    flash("You are now logged in as %s" % login_session['username'],
+          'alert alert-success')
     return output
 
 
@@ -149,7 +150,7 @@ def gdisconnect():
         del login_session['username']
         del login_session['email']
         # flash signout message and redirect to the landing page
-        flash("Sign out successful.")
+        flash("Sign out successful.", 'alert alert-success')
         return redirect(url_for('showLandingPage'))
     else:
         response = make_response(json.dumps(
@@ -224,7 +225,7 @@ def newItem(category_id):
                            description=description, category_id=category_id)
         session.add(createdItem)
         session.commit()
-        flash('New {} tree created!'.format(name))
+        flash('New {} tree created!'.format(name), 'alert alert-warning')
         return redirect(url_for('showItems', category_id=category_id))
     # handle the GET request
     return render_template('newItems.html', form=form, user=user,
@@ -249,7 +250,8 @@ def editItem(category_id, item_id):
         # save the currently logged in user's id to the database with item
         item.user_id = login_session['user_id']
         # operation complete flash message to user
-        flash("Tree {} has been updated!".format(item.name))
+        flash("Tree {} has been updated!".format(item.name),
+              'alert alert-warning')
         return redirect(url_for('showItems', category_id=category_id))
     # Handle the GET request
     # first check for user login, then check that they are authorized to edit
@@ -257,7 +259,8 @@ def editItem(category_id, item_id):
         return redirect('/login')
     if item.user_id != login_session['user_id']:
         flash("""You are not allowed to edit this tree.
-              Please edit a tree that you created.""")
+              You may only edit a tree that you created.""",
+              'alert alert-danger')
         return redirect(url_for('showItems', category_id=category_id))
     else:
         return render_template('editItems.html', item=item, user=user,
@@ -279,10 +282,21 @@ def deleteItem(category_id, item_id):
         session.delete(item)
         session.commit()
         # operation complete flash message to user
-        flash("Item: {} was successfully deleted from the database.".format(item.name))
+        flash("""Item: {} was successfully deleted from
+              the database.""".format(item.name), 'alert alert-warning')
         return redirect(url_for('showItems', category_id=category_id))
-    # if this is a get show the deleteItems html
-    return render_template('deleteItems.html', item=item, user=user, category_id=category_id)
+    # Process GET request
+    # first check for login, then check that they are authorized to delete
+    if 'username' not in login_session:
+        return redirect('/login')
+    if item.user_id != login_session['user_id']:
+        flash("""You are not allowed to delete this tree.
+              You may only delete a tree that you created.""",
+              'alert alert-danger')
+        return redirect(url_for('showItems', category_id=category_id))
+    else:
+        return render_template('deleteItems.html', item=item, user=user,
+                               category_id=category_id)
 
 
 def createUser(login_session):
