@@ -19,7 +19,7 @@ My recommendation is to install all of the required components within a Virtual 
 After the required dependencies are installed, run the web application using Flask.  The following steps will explain how to create a local copy of the code and run Flask.
 
 1.  Download and unzip (or Clone) the contents of this repository using Github or Git commands from the Terminal or shell.
-2.  Navigate to the root directory (item_catalog) where the files have been copied using a Terminal (i.e.; shell prompt).  The command `dir` on windows or `cd` on OSX and Linux, are used to navigate to the directory.  For example, on Mac OSX, you would type `cd /path/to/directory/here` to navigate to the local files.
+2.  Navigate to the root directory (item_catalog) where the files have been copied using a Terminal (i.e.; shell prompt).  The command `dir` on windows or `cd` on OSX and Linux, are used to navigate to the directory.  For example, using Mac OSX Terminal, you would type `cd /path/to/directory/here` to navigate to the local files.
 3.  Run the Flask server by typing the following into the Terminal (i.e.; shell) window. `$ python main.py`
 If everything was installed correctly, this will start the Flask Application running in the background on port 5000.
 
