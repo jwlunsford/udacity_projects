@@ -235,13 +235,10 @@ def newItem(category_id):
            methods=['GET', 'POST'])
 def editItem(category_id, item_id):
     """edit an item in the database"""
-    # check for user login
-    if 'username' not in login_session:
-        return redirect('/login')
     # retrieve the item
     item = session.query(Item).filter_by(id=item_id).first()
     user = session.query(User).filter_by(
-        username=login_session['username']).one()
+                                         username=login_session['username']).one()
     form = ItemForm()
     # handle the POST request
     if form.validate_on_submit():
@@ -254,8 +251,17 @@ def editItem(category_id, item_id):
         # operation complete flash message to user
         flash("Tree {} has been updated!".format(item.name))
         return redirect(url_for('showItems', category_id=category_id))
-    # handle the GET request
-    return render_template('editItems.html', item=item, user=user, form=form)
+    # Handle the GET request
+    # first check for user login, then check that they are authorized to edit
+    if 'username' not in login_session:
+        return redirect('/login')
+    if item.user_id != login_session['user_id']:
+        flash("""You are not allowed to edit this tree.
+              Please edit a tree that you created.""")
+        return redirect(url_for('showItems', category_id=category_id))
+    else:
+        return render_template('editItems.html', item=item, user=user,
+                               form=form)
 
 
 @app.route("/category/<int:category_id>/<int:item_id>/delete/",
