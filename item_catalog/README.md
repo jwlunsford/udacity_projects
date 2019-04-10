@@ -31,6 +31,9 @@ If everything was installed properly, the Flask Application should be running in
 * Login is required to make changes to the underlying data (Create, Update or Delete Trees).  The Web Application uses a Google account to log users in.  Users without a Google account will need to create one to access this functionality in the application.
 * NOTE:  A public page for viewing trees is available for unauthorized users.
 
+#### ** When adding an item to the database **
+Flask accesses static content such as images from a directory in the application named static.  Several images are already included in this folder.  When adding an item to the database, the Add Item form allows you to enter a filename for an image that will be included with the tree description.  When entering an image filename, use one that is already in the /static directory.  As an example, to create a new tree called "Shortleaf Pine", enter shortleaf_pine.png as the text in the image filename textbox.
+
 ## License Info
 The Tree Catalog Application is provided under the [MIT License](https://choosealicense.com/licenses/mit/), which means it is provided "AS IS" and may be used for any purpose as long as attribution is given.
 
