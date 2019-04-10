@@ -11,9 +11,11 @@
     {{ form.csrf_token() }}
     <dl>
       <!-- IF YOU ACCESS VARIABLES INSIDE TAGS DON'T PUT THE BRACES AROUND THEM -->
-      {{ wtf.form_field(form.name, class="form-control", placeholder=item.name) }}
-      {{ wtf.form_field(form.photo_filename, class="form-control", placeholder=item.photo_filename) }}
-      {{ wtf.form_field(form.description, class="form-control") }}
+      {{ wtf.form_field(form.name, class="form-control", placeholder="Ex: " + item.name) }}
+      {{ wtf.form_field(form.photo_filename, class="form-control",
+          placeholder="Ex: " + item.photo_filename) }}
+      {{ wtf.form_field(form.description, class="form-control",
+          placeholder="Enter a short description here ...") }}
     </dl>
     <p>
       <input type="submit" class="btn btn-warning">
