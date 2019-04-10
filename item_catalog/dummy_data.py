@@ -8,11 +8,6 @@ Session = sessionmaker(bind=engine)
 session = Session()
 
 
-# User1
-user1 = User(username="johndoe", email="john@mail.com")
-session.add(user1)
-session.commit()
-
 # Categories
 category1 = Category(name="Deciduous")
 category2 = Category(name="Evergreen")
