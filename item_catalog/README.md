@@ -24,7 +24,7 @@ After the required dependencies are installed, run the web application using Fla
 
 NOTE:  The first time the application runs it will create a SQLite database named 'catalog.db' in the current working directory.  The initial database will be empty.  To populate the database with sample information, execute 'dummy_data.py'.  This is done by typing `python dummy_data.py` from the shell prompt.  After the data is imported, repeat step 3 above to start Flask again.
 
-If everything was installed correctly, this will start the Flask Application running in the background on port 5000.
+If everything was installed properly, the Flask Application should be running in the background on port 5000.
 
 ## Usage
 * When the Flask Server is running in the background, open a Browser and type `localhost:5000` into the address bar and press Enter.   This should bring up Tree Catalog landing page in the Browser.   From the landing page, click the Navigation links to view trees by Category (Deciduous and Evergreen).
