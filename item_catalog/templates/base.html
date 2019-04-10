@@ -45,10 +45,11 @@
 
 {% block content %}
 <div class="container-fluid">
-  {% with messages = get_flashed_messages() %}
+  <!-- This section processes message flashing with categories -->
+  {% with messages = get_flashed_messages(with_categories=true) %}
       {% if messages %}
-          {% for message in messages %}
-          <div class="alert alert-warning" role="alert">{{ message }}</div>
+          {% for category, message in messages %}
+          <div class="{{ category }}" role="alert">{{ message }}</div>
           {% endfor %}
       {% endif %}
     {% endwith %}
