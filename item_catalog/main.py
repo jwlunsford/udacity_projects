@@ -194,6 +194,10 @@ def showItems(category_id):
     """return all items in the database for a given category"""
     category = session.query(Category).filter_by(id=category_id).first()
     items = session.query(Item).filter_by(category_id=category_id).all()
+    # if the user is not logged in, show the publicItems page.
+    if 'username' not in login_session:
+        return render_template('publicItems.html', items=items,
+                               category=category)
     return render_template('showItems.html', items=items, category=category)
 
 
@@ -245,6 +249,8 @@ def editItem(category_id, item_id):
         item.name = form.name.data
         item.photo_filename = form.photo_filename.data
         item.description = form.description.data
+        # save the currently logged in user's id to the database with item
+        item.user_id = login_session['user_id']
         # operation complete flash message to user
         flash("Tree {} has been updated!".format(item.name))
         return redirect(url_for('showItems', category_id=category_id))
