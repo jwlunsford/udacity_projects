@@ -39,11 +39,13 @@ class Item(Base):
     photo_filename = Column(String(250))
     description = Column(String(180), nullable=False)
     category_id = Column(Integer, ForeignKey('category.id'))
+    user_id = Column(Integer, ForeignKey('user.id'))
     created_on = Column(DateTime(), default=datetime.now)
     updated_on = Column(DateTime(), default=datetime.now,
                         onupdate=datetime.now)
 
     category = relationship('Category', backref=backref('item', order_by=id))
+    user = relationship('User', backref=backref('item', order_by=id))
 
     @property
     def serialize(self):
