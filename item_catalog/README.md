@@ -14,16 +14,24 @@ The Tree Catalog Application was created using the most recent version of the li
 * requests
 
 ## Installation and Flask Startup
-Depending on your preferences, you may choose to install all of the required components using a Virtual Environment as described in [this article](https://docs.python-guide.org/dev/virtualenvs/).  I have found that this makes it easier to keep all the required packages organized.
+Users can install all of the required components using a Virtual Environment as described in [this article](https://docs.python-guide.org/dev/virtualenvs/).  This helps keep all the required packages organized and in an easy to manage format.
 
-Once the required dependencies are installed on your machine, you are ready to run the web application using Flask.  The following steps will help you duplicate the code on your machine.
+After the required dependencies are installed, run the web application using Flask.  The following steps will explain how to create a local copy of the code.
 
-1.  Download and unzip (or clone) the contents of this repository using Github or Git commands.
-2.  Navigate to the root directory (item_catalog) where the copy is located using your Terminal or command shell.
-3.  Run the Flask server by typing the following into the Terminal (shell) window. `$ python main.py`
-If everything was installed correctly, this will start the Flask Application running in the background.
+1.  Download and unzip (or Clone) the contents of this repository using Github or Git commands from the Terminal or shell.
+2.  Navigate to the root directory (item_catalog) where the copy is located using your Terminal or command shell (using command `dir` on windows or `cd` on OSX and Linux).
+3.  Run the Flask server by typing the following into the Terminal (i.e.; shell) window. `$ python main.py`
+If everything was installed correctly, this will start the Flask Application running in the background on port 5000.
 
 ## Usage
-* Once the Flask Server is running in the background, open a Browser and type `localhost:5000` into the address bar and press Enter.   This will navigate to the Tree Catalog landing page.   From the landing page, you can click the Navigation links to view trees by Category (Deciduous and Evergreen).
-* You will need to sign in to make changes to the underlying data (Create, Update or Delete Trees).  The Web Application uses your Google account to log you in.  If you do not have a Google Account, you will need to create one to access this functionality in the application.
-* NOTE:  You can still view trees by category without logging in to the application.
+* When the Flask Server is running in the background, open a Browser and type `localhost:5000` into the address bar and press Enter.   This should bring up Tree Catalog landing page in the Browser.   From the landing page, click the Navigation links to view trees by Category (Deciduous and Evergreen).
+* Login is required to make changes to the underlying data (Create, Update or Delete Trees).  The Web Application uses a Google account to log users in.  Users without a Google account will need to create one to access this functionality in the application.
+* NOTE:  Trees for each category may be viewed without logging in to the application.
+
+## License Info
+The Tree Catalog Application is provided under the [MIT License](https://choosealicense.com/licenses/mit/), which means it is provided "AS IS" and may be used for any purpose as long as attribution is given.
+
+## Created By:
+* Created By: Jon Lunsford
+* Date: April 9, 2019
+* License: MIT
