@@ -30,7 +30,6 @@ class Category(Base):
                         onupdate=datetime.now)
 
 
-
 class Item(Base):
     # represents the item database entity
     __tablename__ = 'item'
@@ -56,7 +55,6 @@ class Item(Base):
             'description':self.description,
             'category_id':self.category_id
         }
-
 
 
 engine = create_engine('sqlite:///catalog.db')
