@@ -19,8 +19,9 @@ My recommendation is to install all of the required components within a Virtual 
 After the required dependencies are installed, run the web application using Flask.  The following steps will explain how to create a local copy of the code and run Flask.
 
 1.  Download and unzip, or Clone, the Item_Catalog project contents in this repository using Github online, or Git commands from a shell prompt.
-2.  Navigate to the root directory (item_catalog) where the files have been copied using a Terminal (i.e.; shell prompt).  The command `dir` on windows or `cd` on OSX and Linux, are used to navigate to the directory.  For example, using Mac OSX Terminal, you would type `cd /path/to/directory/here` to navigate to the local directory where the files were saved.
-3.  Run the Flask server by typing the following into the Terminal (i.e.; shell) window. `python main.py`.
+2.  A client_secrets.json file is required to enable Login Authentication using Google Developer APIs.  To create this file, go to [GoogleAIPs](https://console.developers.google.com) and create a new API Project as described in ["Using OAuth2.0 for Web Server Applications"](https://developers.google.com/api-client-library/python/auth/web-app).  The client_secrets.json file will contain the client_id and client_secret for your newly created project.  Store this file in your project directory.
+3.  Navigate to the root directory (item_catalog) where the files have been copied using a Terminal (i.e.; shell prompt).  The command `dir` on windows or `cd` on OSX and Linux, are used to navigate to the directory.  For example, using Mac OSX Terminal, you would type `cd /path/to/directory/here` to navigate to the local directory where the files were saved.
+4.  Run the Flask server by typing the following into the Terminal (i.e.; shell) window. `python main.py`.
 
 NOTE:  The first time the application runs it will create a SQLite database named 'catalog.db' in the current working directory.  The initial database will be empty.  To populate the database with sample information, execute 'dummy_data.py'.  This is done by typing `python dummy_data.py` from the shell prompt.  After the data is imported, repeat step 3 above to start Flask again.
 
