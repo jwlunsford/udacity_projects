@@ -5,7 +5,7 @@ For this problem, I chose to implement the solution using a custom object called
 
 
 #### Efficiency:
-* Time efficiency - O(n log n) worst case.  The array used as a heap in this code must be sorted each time after two nodes are extracted and combined.  This array is a native python structure that uses O(n log n) time.  All other functions use O(n) time.
+* Time efficiency - O(n log n) worst case.  The array used as a heap in this code must be sorted each time a new node is inserted.  The array is a native python structure that uses O(n log n) time.  All other functions use O(n) time.
 * Space efficiency - O(n) worst case, where n is the number of unique characters in the input data.
 
 
