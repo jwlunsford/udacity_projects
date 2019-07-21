@@ -106,3 +106,6 @@ user = 'subchild5_user1'                    # USER AT DEEPEST LEVEL
 was_found = is_user_in_group(user, parent)  # SHOULD RETURN TRUE
 print(was_found)
 
+user = 'parent_user'                        # USER NOT IN CHILD1 GROUP
+was_found = is_user_in_group(user, child1)  # SHOULD RETURN FALSE
+print(was_found)
