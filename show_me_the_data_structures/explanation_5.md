@@ -5,7 +5,7 @@ For this problem, I chose to implement the solution where the blocks are stored 
 
 
 #### Efficiency:
-* Time efficiency - O(1) worst case, becuase blocks are appended to the chain (list) and are retrieved by index number.
-* Space efficiency - O(n) worst case, because each group or username must be stored as an item in a list.
+* Time efficiency - O(n) worst case.  Blocks are appended to the chain with O(1) constant time, and are retrieved by iterating through the chain starting with the first chain until the index is found.  Printing the blocks are also O(n) time.
+* Space efficiency - O(n) worst case, because each block is stored in memory.
 
 
