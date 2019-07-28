@@ -1,7 +1,7 @@
-### Problem 5 - Blockchain
+### Problem 4 - Active Directory
 
 #### Reasoning:
-For this problem, I chose to implement the solution using a custom object called a TreeSearch().  This object is used to store the initial state (found=False), then updates this state if the username is found.  This uses a recursive approach by calling search_users() to move through the subgroups.
+For this problem, I chose to implement the solution using a custom object called a TreeSearch().  This object is used to store the initial state (found=False), then updates this state if the username is found in the directory.  This uses a recursive approach by calling search_users() to move through the subgroups to the end of the tree.
 
 
 #### Efficiency:
