@@ -1,7 +1,7 @@
 ### Problem 6 - Union and Intersection
 
 #### Reasoning:
-For this problem, I chose to implement the solution by creating a fuction that would extract the LinkedList values into a set.  By extracting the values of two LinkedLists, I could use the values in Python's Union and Intersection set operations.  The returned set could then be turned back into a LinkedList using the remaining values.
+For this problem, I chose to implement the solution by creating a fuction that would extract the LinkedList values into a set.  By extracting the values of each LinkedList, I could compute the union and intersection operations using Python's built in set operations.  The returned set could then be turned back into a LinkedList using the remaining values, by iterating through the set values.
 
 
 #### Efficiency:

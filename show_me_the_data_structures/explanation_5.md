@@ -1,7 +1,7 @@
-### Problem 6 - Union and Intersection
+### Problem 5 - Blockchain
 
 #### Reasoning:
-For this problem, I chose to implement the solution where the blocks are stored in the chain using a list data strucutre.  The methods for the Blockchain implementation are add_block(), get_blocks(), and get_block_by_index().  Technically in a real Blockchain implementation access to the blocks would be limited to add operations only.
+For this problem, I chose to implement the solution where the blocks are stored in the chain using a LinkedList data strucutre.  The methods for the Blockchain implementation are add_block(), get_blocks(), and get_block_by_index().  Technically in a real Blockchain implementation access to the blocks would be limited to add operations only.
 
 
 #### Efficiency:
