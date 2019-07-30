@@ -26,7 +26,6 @@ class LRU_Cache(object):
         self.head.next = self.tail
         self.tail.prev = self.head
 
-
     def get(self, key):
         # Retrieve item from provided key. Return -1 if nonexistent.
         if key in self.hashmap:
@@ -37,7 +36,6 @@ class LRU_Cache(object):
             return node.value
         else:
             return -1
-
 
     def set(self, key, value):
         # Set the value if the key is not present in the cache. If the cache is at capacity remove the oldest item.
@@ -65,7 +63,6 @@ class LRU_Cache(object):
         self._cache_insert(new_node)
         self.hashmap[key] = new_node
 
-
     def _cache_insert(self, node):
         # inserts a node to the cache at the MRU position (adjacent to the tail)
         prev_mru = self.tail.prev
@@ -73,24 +70,11 @@ class LRU_Cache(object):
         node.next = self.tail
         self.tail.prev = node
 
-        '''first_node = self.head.next
-        first_node.prev = node
-        node.prev = self.head
-        node.next = first_node
-        self.head.next = node'''
-
-
     def _cache_remove(self, node):
         # remove a node from the cache
         new_lru = node.next
         new_lru.prev = self.head
         self.head.next = new_lru
-
-        '''next_node = node.next
-        next_node.prev = node.prev
-        node.prev.next = next_node'''
-
-
 
 
 # TEST CASES
