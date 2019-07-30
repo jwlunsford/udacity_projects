@@ -42,13 +42,17 @@ class LRU_Cache(object):
     def set(self, key, value):
         # Set the value if the key is not present in the cache. If the cache is at capacity remove the oldest item.
 
+        if self.capacity == 0 or self.capacity == None:
+            print(f'ERROR: Cache capacity is 0, or not assigned. Please initialize the Cache with a valid capacity.')
+            return -1
+
         if key in self.hashmap:
             # remove key from hashmap and node from cache
             node = self.hashmap[key]
             self._cache_remove(node)
             del self.hashmap[key]
         else:
-            # key not present in cache
+            # key not present in cache, add it
             if len(self.hashmap) == self.capacity:
                 # cache at full capacity, remove LRU node
                 lru_node = self.head.next
@@ -63,24 +67,40 @@ class LRU_Cache(object):
 
 
     def _cache_insert(self, node):
-        # inserts a node to the cache at the MRU position (adjacent to the head)
-        first_node = self.head.next
+        # inserts a node to the cache at the MRU position (adjacent to the tail)
+        prev_mru = self.tail.prev
+        prev_mru.next = node
+        node.next = self.tail
+        self.tail.prev = node
+
+        '''first_node = self.head.next
         first_node.prev = node
         node.prev = self.head
         node.next = first_node
-        self.head.next = node
+        self.head.next = node'''
 
 
     def _cache_remove(self, node):
         # remove a node from the cache
-        next_node = node.next
+        new_lru = node.next
+        new_lru.prev = self.head
+        self.head.next = new_lru
+
+        '''next_node = node.next
         next_node.prev = node.prev
-        node.prev.next = next_node
+        node.prev.next = next_node'''
 
 
 
 
 # TEST CASES
+
+# get() and set() constitute a 'use'
+# cache hit return value
+# cache miss return -1
+# if cache is full, remove LRU element first then insert new element
+
+
 our_cache = LRU_Cache(5)
 
 our_cache.set(1, 1)
@@ -94,8 +114,16 @@ print(f'test should return 2: {our_cache.get(2)}')     # returns 2
 print(f'test should return -1: {our_cache.get(9)}')    # returns -1 because 9 is not present in the cache
 
 our_cache.set(5, 5)
-our_cache.set(6, 6)                                    # exceeded capacity and removed LRU node(5, 5)
+our_cache.set(6, 6)                                    # exceeded capacity and removed LRU node(3, 3)
 
-print(f'test should return 3: {our_cache.get(3)}')     # returns 3 because the cache reached it's capacity and 3 was the least recently used entry
-our_cache.set(4, 3)
-print(f'test should return 3: {our_cache.get(4)}')     # returns 3 beacuse the value of key 4 was overwritten to 3
+print(f'test should return -1: {our_cache.get(3)}')     # returns -1  because the previous set() exceeded capacity and removed node(3,3)
+our_cache.set(4, 9)
+print(f'test should return 9: {our_cache.get(4)}')     # returns 9 beacuse the value of key 4 was overwritten to 9
+
+
+# test the edge cases where capacity equals 0 or None
+null_cache = LRU_Cache(capacity=None)
+null_cache.set(1, 1)                                   # Returns Error Message, invalid cache capacity
+
+null_cache = LRU_Cache(0)
+null_cache.set(1, 1)                                   # Returns Error Message, invalid cache capacity

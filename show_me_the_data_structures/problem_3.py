@@ -59,6 +59,13 @@ class HuffmanTree(object):
         heap = self.get_heap()
         # create a leaf node for each unique character and build a min heap for all leaf nodes
         frequency = self.get_char_freq()
+        # handle case where all characters are the same, throw error code -1
+        if len(frequency) == 1:
+            for char, freq in frequency.items():
+                node = HuffmanNode(char, freq)
+            self.codes[char] = '0'
+            self.root = node
+            return -1
         for char, freq in frequency.items():
             node = HuffmanNode(char, freq)
             heap.append(node)
@@ -84,6 +91,7 @@ class HuffmanTree(object):
 
         # return the remaining item
         self.root = heap[0]
+        return 0
 
     def make_codes(self):
         current_code = ''
@@ -123,35 +131,46 @@ class HuffmanTree(object):
         stream = data
         decode = ''
 
-        # loop through the bitstream
-        for bit in stream:
-            # if bit is 0 go left, if 1 go right
-            if bit == '0':
-                node = node.get_left_child()
-                if node.char == None:  # this is an internal node
-                    continue
-                else:
-                    decode += node.char
-                    node = self.get_root()
-            if bit == '1':
-                node = node.get_right_child()
-                if node.char == None:  # this is an internal node
-                    continue
-                else:
-                    decode += node.char
-                    node = self.get_root()
+        # case where all data characters are the same (e.g.; 'aaaaaa')
+        if node.get_right_child() == None and node.get_left_child() == None:
+            decode = node.char * node.freq
+        else:
+            # normal case, loop through the bitstream
+            for bit in stream:
+                # if bit is 0 go left, if 1 go right
+                if bit == '0':
+                    node = node.get_left_child()
+                    if node.char == None:  # this is an internal node
+                        continue
+                    else:
+                        decode += node.char
+                        node = self.get_root()
+                if bit == '1':
+                    node = node.get_right_child()
+                    if node.char == None:  # this is an internal node
+                        continue
+                    else:
+                        decode += node.char
+                        node = self.get_root()
 
         return decode
 
 
 def huffman_encoding(data):
     # build a huffman tree from the character frequencies found in data.
-    tree = HuffmanTree(data)
-    tree.get_char_freq()
-    tree.build_tree()
-    tree.make_codes()
-    tree.create_bitstream()
-    return tree.bitstream, tree
+    if data == '':
+        print(f'Data cannot be null, please enter valid characters')
+    else:
+        tree = HuffmanTree(data)
+        val = tree.build_tree()
+        if val == 0:
+            # normal case, proceed with make codes
+            tree.make_codes()
+            tree.create_bitstream()
+            return tree.bitstream, tree
+        else:
+            tree.create_bitstream()
+            return tree.bitstream, tree
 
 def huffman_decoding(data, tree):
     # traverse the tree, for each 0-bit in data move left and 1-bit move right, do this until reaching a leaf node
@@ -159,10 +178,11 @@ def huffman_decoding(data, tree):
 
 
 if __name__ == "__main__":
-    codes = {}
 
+    # TEST 1 - Normal data
     a_great_sentence = "The bird is the word"
 
+    print("***** TEST 1 *****")
     print ("The size of the data is: {}\n".format(sys.getsizeof(a_great_sentence)))
     print ("The content of the data is: {}\n".format(a_great_sentence))
 
@@ -175,4 +195,45 @@ if __name__ == "__main__":
 
     print ("The size of the decoded data is: {}\n".format(sys.getsizeof(decoded_data)))
     print ("The content of the encoded data is: {}\n".format(decoded_data))
+
+
+
+    # TEST 2 - Outlier, All characters the same
+    a_great_sentence = "aaaaaaaa"
+
+    print("***** TEST 2 (Edge case) *****")
+    print("The size of the data is: {}\n".format(sys.getsizeof(a_great_sentence)))
+    print("The content of the data is: {}\n".format(a_great_sentence))
+
+    encoded_data, tree = huffman_encoding(a_great_sentence)
+
+    print("The size of the encoded data is: {}\n".format(sys.getsizeof(int(encoded_data, base=2))))
+    print("The content of the encoded data is: {}\n".format(encoded_data))
+
+    decoded_data = huffman_decoding(encoded_data, tree)
+
+    print("The size of the decoded data is: {}\n".format(sys.getsizeof(decoded_data)))
+    print("The content of the encoded data is: {}\n".format(decoded_data))
+
+
+    # TEST 3 - Edge case, null data
+    a_great_sentence = ""
+
+    print("***** TEST 3 (Edge case)*****")
+    print("The size of the data is: {}\n".format(sys.getsizeof(a_great_sentence)))
+    print("The content of the data is: {}\n".format(a_great_sentence))
+
+    if a_great_sentence != "":
+        encoded_data, tree = huffman_encoding(a_great_sentence)
+
+        print("The size of the encoded data is: {}\n".format(sys.getsizeof(int(encoded_data, base=2))))
+        print("The content of the encoded data is: {}\n".format(encoded_data))
+
+        decoded_data = huffman_decoding(encoded_data, tree)
+
+        print("The size of the decoded data is: {}\n".format(sys.getsizeof(decoded_data)))
+        print("The content of the encoded data is: {}\n".format(decoded_data))
+
+    else:
+        print(f'ERROR:  Cannot compute! Data must not be Null')
 

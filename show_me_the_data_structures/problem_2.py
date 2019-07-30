@@ -19,29 +19,43 @@ def find_files(suffix, path):
     # using a list might include duplicate file names.  A set may be a better suited.
     matchingFiles = list()
 
-    # get a list of all files in the root directory
-    dirList = os.listdir(path)
+    # valid extensions
+    valid_extensions = ['.c', '.h', 'c', 'h']
 
-    # loop through all files/directories in dirList
-    for file in dirList:
-        fullPath = os.path.join(path, file)  # get the full path
-        if os.path.isdir(fullPath):   # if the file is a directory, find all the files within
-            matchingFiles = matchingFiles + find_files(suffix, fullPath)
-        elif os.path.isfile(fullPath):  # it is a file
-            if fullPath.endswith(suffix):
-                matchingFiles.append(file)
+    if suffix not in valid_extensions:
+        return f'Invalid extension, {suffix}. Please try again.'
+
+    if path:
+        # get a list of all files in the root directory
+        dirList = os.listdir(path)
+        if dirList:
+            # loop through all files/directories in dirList
+            for file in dirList:
+                fullPath = os.path.join(path, file)  # get the full path
+                if os.path.isdir(fullPath):   # if the file is a directory, find all the files within
+                    matchingFiles = matchingFiles + find_files(suffix, fullPath)
+                elif os.path.isfile(fullPath):  # it is a file
+                    if fullPath.endswith(suffix):
+                        matchingFiles.append(file)
+                else:
+                    pass
+            return matchingFiles
         else:
-            pass
+            # empty directory
+            return f'Empty directory, {path}. Please try again.'
+    else:
+        # invalid or null path
+        return f'Invalid path or not specified, {path}. Please try again.'
 
-    return matchingFiles
 
 
 # TEST CASES
 
 print(find_files('.c', '/Users/jwl/Downloads/testdir'))  # should return all files ending in .c
 print(find_files('c', '/Users/jwl/Downloads/testdir'))   # should return all files ending in .c
-print(find_files('C', '/Users/jwl/Downloads/testdir'))   # should return an empty list
-print(find_files('c', ''))                               # will generate a FileNotFoundError, due to empty path
-
+print(find_files('C', '/Users/jwl/Downloads/testdir'))   # should return Invalid extension message
+print(find_files('h', '/Users/jwl/Downloads/testdir'))   # should return all files ending in .h
+print(find_files('c', ''))                               # should return Invalid path message.
+print(find_files('d', '/Users/jwl/Downloads/testdir'))   # should return Invalid extension message
 
 
