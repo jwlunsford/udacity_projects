@@ -11,7 +11,7 @@ The python modules included in this project correspond to the problem sets in th
 * problem_7.py
 
 ### Description:
-These projects were developed in Python 3.  Problems include various coding problem sets which are routinely solved using basic sorting, searching algorithms, and data structures such as Binary Trees and Tries.  Markdown files (*.md) are included to provide a description of the reasoning behind algorithm selection and Space/Time complexity of the code.
+These projects were developed in Python 3.  Problems include various coding problem sets which are routinely solved using basic sorting and searching algorithms, as well as data structures such as Binary Trees and Tries.  Markdown files (.md) are included to provide a brief description of the reasoning behind each algorithm or structure used to solve the problem, and the space/time complexity of the code.
 
 
 ### Running:
