@@ -84,8 +84,8 @@ def test_function(test_case):
     else:
         print("Fail")
 
-test_function([[6, 7, 8, 9, 10, 1, 2, 3, 4], 6])
-test_function([[6, 7, 8, 9, 10, 1, 2, 3, 4], 1])
-test_function([[6, 7, 8, 1, 2, 3, 4], 8])
-test_function([[6, 7, 8, 1, 2, 3, 4], 1])
-test_function([[6, 7, 8, 1, 2, 3, 4], 10])
+test_function([[6, 7, 8, 9, 10, 1, 2, 3, 4], 6])    # Find value in front of pivoted array.  Should return Pass
+test_function([[6, 7, 8, 9, 10, 1, 2, 3, 4], 1])    # Find value immediately after pivot.  Should return Pass
+test_function([[6, 7, 8, 1, 2, 3, 4], 8])           # Find the pivot value.  Should return Pass
+test_function([[6, 7, 8, 1, 2, 3, 4], 9])           # Value not in list, Should return -1 to test function, which
+                                                        # will compare to -1 from linear_search() and return Pass
