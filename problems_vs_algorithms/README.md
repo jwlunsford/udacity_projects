@@ -6,6 +6,9 @@ The python modules included in this project correspond to the problem sets in th
 * problem_2.py
 * problem_3.py
 * problem_4.py
+* problem_5.ipynb
+* problem_6.py
+* problem_7.py
 
 ### Description:
 These projects were developed in Python 3.  Problems include various coding problem sets which are routinely solved using basic sorting, searching and divide-and-conquer algorithms.  Markdown files (*.md) are included to provide a description of the reasoning behind algorithm selection and Space/Time complexity of the code.
