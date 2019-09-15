@@ -1,7 +1,7 @@
 # Udacity Projects
 
 ### Project Description:
-This Repo contains projects from the Udacity Full Stack Developer Nanodegree and the Data Structures & Algorithms Nanodegree programs.  These projects were completed using a Python 3 environment, with Flask, SQLAlchemy, and other third-party modules.
+This Repo contains projects from the Udacity Full Stack Developer Nanodegree and the Data Structures & Algorithms Nanodegree programs.  These projects were completed using a Python 3 environment, additional requirements and details are included within the project directories.
 
 ### Projects Included for the Full Stack Developer Nanodegree include:
 * item catalog - simple web app demonstration using Flask and associated libraries
